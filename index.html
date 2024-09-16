@@ -13,22 +13,83 @@
     
     <header>
         <h1>Augustin MORVAL</h1>
-        <p>AI & Machine Learning Developer</p>
+        <p>Business-Driven AI & Machine Learning Developer</p>
     </header>
 
     <nav>
         <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#expertise">Expertise</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I'm a passionate AI and Machine Learning development with a focus on creating innovative solutions to complex problems. With a background in Finance and Consulting, I strive to push the boundaries of what's possible with artificial intelligence powered by my business acumen.</p>
+        <section id="about" class="centered-section">
+            <h2>About me</h2>
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="img\Profile.jpeg" alt="Augustin MORVAL">
+                </div>
+                <div class="about-text">
+                    <p class="tagline">Bridging the gap between AI innovation and business strategy</p>
+                    <p>As a passionate AI and Machine Learning developer with a unique background in Finance and Consulting, I specialize in crafting cutting-edge AI solutions that directly address real-world business challenges. My approach seamlessly blends:</p>
+                    <ul class="about-highlights">
+                        <li><i class="fas fa-robot"></i> <span><strong>AI Expertise:</strong> Developing state-of-the-art machine learning models</span></li>
+                        <li><i class="fas fa-chart-pie"></i> <span><strong>Business Acumen:</strong> Translating complex data into actionable insights</span></li>
+                        <li><i class="fas fa-lightbulb"></i> <span><strong>Innovation:</strong> Creating transformative solutions for industry-specific problems</span></li>
+                        <li><i class="fas fa-users"></i> <span><strong>Collaboration:</strong> Bridging the gap between technical teams and stakeholders</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertise">
+            <h2>Dual Expertise</h2>
+            <div class="skill-network">
+                <canvas id="skill-canvas"></canvas>
+                <div class="skill-node technical" data-skill="Machine Learning">
+                    <i class="fas fa-brain"></i>
+                    <span>Machine Learning</span>
+                </div>
+                <div class="skill-node business" data-skill="Financial Analysis">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Financial Analysis</span>
+                </div>
+                <div class="skill-node technical" data-skill="Deep Learning">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Deep Learning</span>
+                </div>
+                <div class="skill-node business" data-skill="Strategy Consulting">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Strategy Consulting</span>
+                </div>
+                <div class="skill-node technical" data-skill="RAG">
+                    <i class="fas fa-database"></i>
+                    <span>RAG</span>
+                </div>
+                <div class="skill-node business" data-skill="Project Management">
+                    <i class="fas fa-tasks"></i>
+                    <span>Project Management</span>
+                </div>
+                <div class="skill-node technical" data-skill="Python">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-node business" data-skill="Business Intelligence">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Business Intelligence</span>
+                </div>
+                <div class="skill-node technical" data-skill="Data Analysis">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data Analysis</span>
+                </div>
+                <div class="skill-node business" data-skill="International Business">
+                    <i class="fas fa-globe"></i>
+                    <span>International Business</span>
+                </div>
+            </div>
         </section>
 
         <section id="projects">
@@ -59,40 +120,28 @@
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skill-network">
-                <canvas id="skill-canvas"></canvas>
-                <div class="skill-node" data-skill="Machine Learning">
-                    <i class="fas fa-brain"></i>
-                    <span>Machine Learning</span>
-                </div>
-                <div class="skill-node" data-skill="Deep Learning">
-                    <i class="fas fa-network-wired"></i>
-                    <span>Deep Learning</span>
-                </div>
-                <div class="skill-node" data-skill="NLP">
-                    <i class="fas fa-language"></i>
-                    <span>NLP</span>
-                </div>
-                <div class="skill-node" data-skill="RAG">
-                    <i class="fas fa-database"></i>
-                    <span>RAG</span>
-                </div>
-                <div class="skill-node" data-skill="Python">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="skill-node" data-skill="Data Analysis">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Data Analysis</span>
-                </div>
-            </div>
-        </section>
-
         <section id="contact">
-            <h2>Contact</h2>
-            <p>Get in touch with me at: <a href="mailto:augustin.morval.pro@gmail.com">augustin.morval.pro@gmail.com</a></p>
+            <h2>Get in Touch</h2>
+            <p>I'm always open to new opportunities and collaborations. Let's connect!</p>
+            <div class="contact-container">
+                <div class="contact-methods">
+                    <a href="mailto:augustin.morval.pro@gmail.com" class="contact-button">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/augustinmorval" target="_blank" class="contact-button">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/AugustinMORVAL" target="_blank" class="contact-button">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
         </section>
     </main>
 
