@@ -103,3 +103,119 @@ function addNeuronNodes() {
 }
 
 addNeuronNodes();
+
+// Skill nodes animation
+class SkillNode {
+    constructor(element) {
+        this.element = element;
+        this.x = element.offsetLeft + element.offsetWidth / 2;
+        this.y = element.offsetTop + element.offsetHeight / 2;
+        this.connections = [];
+    }
+}
+
+class Synapse {
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+        this.length = 0;
+        this.progress = 0;
+        this.speed = Math.random() * 0.02 + 0.005;
+    }
+
+    update() {
+        this.progress += this.speed;
+        if (this.progress > 1) {
+            this.progress = 0;
+        }
+    }
+
+    draw(ctx) {
+        const dx = this.end.x - this.start.x;
+        const dy = this.end.y - this.start.y;
+        const x = this.start.x + dx * this.progress;
+        const y = this.start.y + dy * this.progress;
+
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(this.start.x, this.start.y);
+        ctx.lineTo(this.end.x, this.end.y);
+        ctx.strokeStyle = 'rgba(200, 200, 200, 0.2)';
+        ctx.stroke();
+    }
+}
+
+function initializeSkillNetwork() {
+    const skillNetwork = document.querySelector('.skill-network');
+    const canvas = document.getElementById('skill-canvas');
+    const ctx = canvas.getContext('2d');
+    const skillNodes = document.querySelectorAll('.skill-node');
+
+    function resizeCanvas() {
+        canvas.width = skillNetwork.offsetWidth;
+        canvas.height = skillNetwork.offsetHeight;
+    }
+
+    function positionNodes() {
+        const containerWidth = skillNetwork.offsetWidth;
+        const containerHeight = skillNetwork.offsetHeight;
+        const nodeCount = skillNodes.length;
+        const radius = Math.min(containerWidth, containerHeight) * 0.35;
+        const centerX = containerWidth / 2;
+        const centerY = containerHeight / 2;
+
+        skillNodes.forEach((node, index) => {
+            const angle = (index / nodeCount) * Math.PI * 2;
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+
+            node.style.left = `${x - node.offsetWidth / 2}px`;
+            node.style.top = `${y - node.offsetHeight / 2}px`;
+        });
+    }
+
+    const nodes = Array.from(skillNodes).map(node => new SkillNode(node));
+    const synapses = [];
+
+    // Create connections
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            synapses.push(new Synapse(nodes[i], nodes[j]));
+        }
+    }
+
+    function drawConnections() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        synapses.forEach(synapse => {
+            synapse.update();
+            synapse.draw(ctx);
+        });
+    }
+
+    function animate() {
+        drawConnections();
+        requestAnimationFrame(animate);
+    }
+
+    function init() {
+        resizeCanvas();
+        positionNodes();
+        nodes.forEach(node => {
+            node.x = node.element.offsetLeft + node.element.offsetWidth / 2;
+            node.y = node.element.offsetTop + node.element.offsetHeight / 2;
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        init();
+    });
+
+    init();
+    animate();
+}
+
+document.addEventListener('DOMContentLoaded', initializeSkillNetwork);
