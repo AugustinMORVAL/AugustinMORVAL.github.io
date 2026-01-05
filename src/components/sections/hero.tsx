@@ -3,10 +3,103 @@ import SectionWrapper from "../ui/section-wrapper";
 import { BlurIn, BoxReveal } from "../animations/reveal-animations";
 import { Button } from "../ui/button";
 import { FileText } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import ScrollDownIcon from "../scroll-down-icon";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 export default function HeroSection() {
+  const nameRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLParagraphElement>(null);
+  const buttonRefs = useRef<(HTMLAnchorElement | HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ delay: 0.3 });
+
+      if (nameRef.current) {
+        const originalText = nameRef.current.textContent || "";
+        const chars = originalText.split("");
+        
+        nameRef.current.innerHTML = chars
+          .map((char) => {
+            const charText = char === " " ? "\u00A0" : char;
+            return `<span class="inline-block" style="opacity: 1; transform: translateY(50px) rotateX(-90deg); background: linear-gradient(to right, white, rgb(226 232 240), rgb(148 163 184)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${charText}</span>`;
+          })
+          .join("");
+
+        const spans = Array.from(nameRef.current.children) as HTMLElement[];
+        tl.to(spans, {
+          y: 0,
+          rotateX: 0,
+          stagger: 0.03,
+          ease: "back.out(1.7)",
+          duration: 0.8,
+        });
+      }
+
+      if (titleRef.current) {
+        tl.from(
+          titleRef.current,
+          {
+            opacity: 0,
+            y: 30,
+            scale: 0.8,
+            ease: "elastic.out(1, 0.5)",
+            duration: 1,
+          },
+          "-=0.3"
+        );
+      }
+
+      tl.from(
+        buttonRefs.current.filter((ref) => ref !== null),
+        {
+          opacity: 0,
+          y: 20,
+          scale: 0.8,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          duration: 0.6,
+        },
+        "-=0.2"
+      );
+
+      buttonRefs.current.forEach((button) => {
+        if (!button) return;
+
+        const handleMouseMove = (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          const rect = button.getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left - rect.width / 2;
+          const y = mouseEvent.clientY - rect.top - rect.height / 2;
+
+          gsap.to(button, {
+            x: x * 0.3,
+            y: y * 0.3,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        };
+
+        const handleMouseLeave = () => {
+          gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1, 0.5)",
+          });
+        };
+
+        button.addEventListener("mousemove", handleMouseMove);
+        button.addEventListener("mouseleave", handleMouseLeave);
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <SectionWrapper id="hero" className="relative h-screen">
       <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-8 items-center relative z-10">
@@ -20,18 +113,27 @@ export default function HeroSection() {
           </BlurIn>
 
           {/* Name */}
-          <BlurIn delay={0.4}>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent leading-none">
-              {config.name}
-            </h1>
-          </BlurIn>
+          <h1
+            ref={nameRef}
+            className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none"
+            style={{ 
+              perspective: "1000px",
+              background: "linear-gradient(to right, white, rgb(226 232 240), rgb(148 163 184))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            {config.name}
+          </h1>
 
           {/* Title */}
-          <BlurIn delay={0.6}>
-            <p className="text-lg md:text-2xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-              {config.title}
-            </p>
-          </BlurIn>
+          <p
+            ref={titleRef}
+            className="text-lg md:text-2xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold"
+          >
+            {config.title}
+          </p>
 
           {/* Description */}
           <BlurIn delay={0.8}>
@@ -42,12 +144,15 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col gap-3 w-full sm:w-fit">
-            {/* Resume Button - Full width primary */}
+            {/* Resume Button */}
             <a
               href={config.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
+              ref={(el) => {
+                buttonRefs.current[0] = el;
+              }}
             >
               <BoxReveal delay={2} width="100%">
                 <Button className="flex items-center justify-center gap-2 w-full bg-foreground text-background hover:bg-foreground/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90 font-medium border-0">
@@ -60,7 +165,13 @@ export default function HeroSection() {
             {/* Second Row: Hire Me + Social Buttons */}
             <div className="flex gap-3 w-full">
               {/* Hire Me Button */}
-              <a href="#contact" className="flex-1">
+              <a
+                href="#contact"
+                className="flex-1"
+                ref={(el) => {
+                  buttonRefs.current[1] = el;
+                }}
+              >
                 <Button
                   variant="outline"
                   className="w-full text-foreground border-border hover:bg-accent"
@@ -71,24 +182,45 @@ export default function HeroSection() {
 
               {/* Social Buttons Container */}
               <div className="flex items-center gap-2">
-                <a
-                  href={config.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" className="px-3" aria-label="GitHub">
-                    <SiGithub size={20} />
-                  </Button>
-                </a>
-                <a
-                  href={config.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" className="px-3" aria-label="LinkedIn">
-                    <SiLinkedin size={20} />
-                  </Button>
-                </a>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={config.social.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ref={(el) => {
+                        buttonRefs.current[2] = el;
+                      }}
+                    >
+                      <Button variant="outline" className="px-3" aria-label="GitHub">
+                        <SiGithub size={20} />
+                      </Button>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>View my GitHub profile</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={config.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ref={(el) => {
+                        buttonRefs.current[3] = el;
+                      }}
+                    >
+                      <Button variant="outline" className="px-3" aria-label="LinkedIn">
+                        <SiLinkedin size={20} />
+                      </Button>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Connect on LinkedIn</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </div>
           </div>

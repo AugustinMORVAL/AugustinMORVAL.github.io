@@ -9,8 +9,14 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
 import { useToast } from "../ui/use-toast";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import { Mail, Send } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Form validation schema
 const contactSchema = z.object({
@@ -23,6 +29,10 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactSection() {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  const contactInfoRef = useRef<HTMLDivElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+  
   const {
     register,
     handleSubmit,
@@ -31,6 +41,118 @@ export default function ContactSection() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate contact info section
+      if (contactInfoRef.current) {
+        gsap.fromTo(
+          contactInfoRef.current,
+          {
+            x: -100,
+            opacity: 0,
+            rotateY: -15,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            rotateY: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: contactInfoRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Animate form with rotation
+      if (formRef.current) {
+        const formFields = formRef.current.querySelectorAll(".form-field");
+        
+        gsap.fromTo(
+          formRef.current,
+          {
+            x: 100,
+            opacity: 0,
+            rotateY: 15,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            rotateY: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: formRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+
+        // Animate form fields sequentially
+        gsap.fromTo(
+          formFields,
+          {
+            y: 30,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: formRef.current,
+              start: "top 75%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Magnetic effect for submit button
+      if (submitButtonRef.current) {
+        const button = submitButtonRef.current;
+
+        const handleMouseMove = (e: MouseEvent) => {
+          const rect = button.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          gsap.to(button, {
+            x: x * 0.3,
+            y: y * 0.3,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        };
+
+        const handleMouseLeave = () => {
+          gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1, 0.5)",
+          });
+        };
+
+        button.addEventListener("mousemove", handleMouseMove);
+        button.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+          button.removeEventListener("mousemove", handleMouseMove);
+          button.removeEventListener("mouseleave", handleMouseLeave);
+        };
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -41,6 +163,17 @@ export default function ContactSection() {
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      // Success animation
+      if (formRef.current) {
+        gsap.to(formRef.current, {
+          scale: 1.05,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut",
+        });
+      }
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon!",
@@ -48,6 +181,17 @@ export default function ContactSection() {
 
       reset();
     } catch (error) {
+      // Error animation
+      if (formRef.current) {
+        gsap.to(formRef.current, {
+          x: -10,
+          duration: 0.1,
+          yoyo: true,
+          repeat: 3,
+          ease: "power2.inOut",
+        });
+      }
+
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
@@ -75,14 +219,12 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-12" style={{ perspective: "1000px" }}>
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
+            ref={contactInfoRef}
             className="space-y-8"
+            style={{ transformStyle: "preserve-3d" }}
           >
             <div>
               <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
@@ -93,7 +235,11 @@ export default function ContactSection() {
             </div>
 
             {/* Email */}
-            <div className="flex items-center gap-4">
+            <motion.div
+              className="flex items-center gap-4"
+              whileHover={{ scale: 1.05, x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Mail className="h-6 w-6 text-primary" />
               </div>
@@ -106,7 +252,7 @@ export default function ContactSection() {
                   {config.email}
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
             <div>
@@ -114,110 +260,138 @@ export default function ContactSection() {
                 Follow me on social media
               </p>
               <div className="flex items-center gap-4">
-                <a
-                  href={config.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                  aria-label="GitHub"
-                >
-                  <SiGithub className="h-6 w-6" />
-                </a>
-                <a
-                  href={config.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <SiLinkedin className="h-6 w-6" />
-                </a>
-                <a
-                  href={config.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                  aria-label="X (Twitter)"
-                >
-                  <SiX className="h-6 w-6" />
-                </a>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <motion.a
+                      href={config.social.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                      aria-label="GitHub"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <SiGithub className="h-6 w-6" />
+                    </motion.a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Follow me on GitHub</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <motion.a
+                      href={config.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                      aria-label="LinkedIn"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <SiLinkedin className="h-6 w-6" />
+                    </motion.a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Connect on LinkedIn</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <motion.a
+                      href={config.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                      aria-label="X (Twitter)"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <SiX className="h-6 w-6" />
+                    </motion.a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Follow me on X</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-6"
+            style={{ transformStyle: "preserve-3d" }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Name */}
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  placeholder="Your name"
-                  {...register("name")}
-                />
-                {errors.name && (
-                  <p className="text-sm text-destructive">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
+            {/* Name */}
+            <div className="form-field space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                placeholder="Your name"
+                {...register("name")}
+              />
+              {errors.name && (
+                <p className="text-sm text-destructive">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
 
-              {/* Email */}
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your.email@example.com"
-                  {...register("email")}
-                />
-                {errors.email && (
-                  <p className="text-sm text-destructive">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
+            {/* Email */}
+            <div className="form-field space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="your.email@example.com"
+                {...register("email")}
+              />
+              {errors.email && (
+                <p className="text-sm text-destructive">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
 
-              {/* Message */}
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  placeholder="Your message..."
-                  rows={6}
-                  {...register("message")}
-                />
-                {errors.message && (
-                  <p className="text-sm text-destructive">
-                    {errors.message.message}
-                  </p>
-                )}
-              </div>
+            {/* Message */}
+            <div className="form-field space-y-2">
+              <Label htmlFor="message">Message</Label>
+              <Textarea
+                id="message"
+                placeholder="Your message..."
+                rows={6}
+                {...register("message")}
+              />
+              {errors.message && (
+                <p className="text-sm text-destructive">
+                  {errors.message.message}
+                </p>
+              )}
+            </div>
 
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full gap-2"
-                size="lg"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" />
-                    Send Message
-                  </>
-                )}
-              </Button>
-            </form>
-          </motion.div>
+            {/* Submit Button */}
+            <Button
+              ref={submitButtonRef}
+              type="submit"
+              className="form-field w-full gap-2"
+              size="lg"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                "Sending..."
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  Send Message
+                </>
+              )}
+            </Button>
+          </form>
         </div>
       </div>
     </SectionWrapper>

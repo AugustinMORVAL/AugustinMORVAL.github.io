@@ -10,8 +10,100 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { ExternalLink, Github } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectsSection() {
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      projectRefs.current.forEach((project, index) => {
+        if (!project) return;
+
+        // Parallax effect with different speeds
+        const speed = 1 + (index % 3) * 0.3;
+        
+        gsap.to(project, {
+          y: -50 * speed,
+          scrollTrigger: {
+            trigger: project,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 2,
+          },
+        });
+
+        // 3D entrance animation
+        gsap.fromTo(
+          project,
+          {
+            opacity: 0,
+            rotateX: 45,
+            y: 100,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            rotateX: 0,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: project,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    if (hoveredProject !== index) return;
+    
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    setMousePosition({ x, y });
+
+    // 3D tilt effect
+    gsap.to(card, {
+      rotateY: x / 20,
+      rotateX: -y / 20,
+      duration: 0.5,
+      ease: "power2.out",
+      transformPerspective: 1000,
+    });
+  };
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredProject(index);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    setHoveredProject(null);
+    
+    // Reset tilt
+    gsap.to(e.currentTarget, {
+      rotateY: 0,
+      rotateX: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  };
+
   return (
     <SectionWrapper id="projects" className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto w-full">
@@ -36,20 +128,30 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <Dialog key={project.id}>
               <DialogTrigger asChild>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
+                <div
+                  ref={(el) => (projectRefs.current[index] = el)}
+                  onMouseMove={(e) => handleMouseMove(e, index)}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                  className="group relative bg-card border border-border rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
+                  style={{
+                    perspective: "1000px",
+                    transformStyle: "preserve-3d",
                   }}
-                  whileHover={{ y: -5 }}
-                  className="group relative bg-card border border-border rounded-lg overflow-hidden cursor-pointer transition-all"
                 >
                   {/* Project Image Placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                    <span className="text-4xl text-primary">📁</span>
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center relative overflow-hidden">
+                    <span className="text-4xl text-primary group-hover:scale-125 transition-transform duration-500">📁</span>
+                    
+                    {/* Animated gradient overlay */}
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        transform: hoveredProject === index 
+                          ? `translate(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px)`
+                          : 'none',
+                      }}
+                    />
                   </div>
 
                   {/* Project Info */}
@@ -66,7 +168,12 @@ export default function ProjectsSection() {
                       {project.description}
                     </p>
                   </div>
-                </motion.div>
+
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
+                  </div>
+                </div>
               </DialogTrigger>
 
               <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
@@ -89,13 +196,16 @@ export default function ProjectsSection() {
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {project.skills.frontend.map((skill) => (
-                              <div
+                              <motion.div
                                 key={skill.title}
-                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
                               >
                                 <span className="text-lg">{skill.icon}</span>
                                 <span>{skill.title}</span>
-                              </div>
+                              </motion.div>
                             ))}
                           </div>
                         </div>
@@ -107,13 +217,16 @@ export default function ProjectsSection() {
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {project.skills.backend.map((skill) => (
-                              <div
+                              <motion.div
                                 key={skill.title}
-                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
                               >
                                 <span className="text-lg">{skill.icon}</span>
                                 <span>{skill.title}</span>
-                              </div>
+                              </motion.div>
                             ))}
                           </div>
                         </div>
@@ -126,13 +239,16 @@ export default function ProjectsSection() {
                     <h4 className="text-lg font-semibold mb-4">Key Features</h4>
                     <ul className="space-y-2">
                       {project.features.map((feature, idx) => (
-                        <li
+                        <motion.li
                           key={idx}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
                           className="flex items-start gap-2 text-sm text-muted-foreground"
                         >
                           <span className="text-primary mt-1">•</span>
                           <span>{feature}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>

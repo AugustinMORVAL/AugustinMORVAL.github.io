@@ -1,8 +1,97 @@
 import SectionWrapper from "../ui/section-wrapper";
 import { config } from "@/data/config";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ExperienceSection() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const experienceRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate timeline line drawing (keep this - it's nice and subtle)
+      if (lineRef.current) {
+        gsap.fromTo(
+          lineRef.current,
+          {
+            scaleY: 0,
+            transformOrigin: "top",
+          },
+          {
+            scaleY: 1,
+            duration: 1.5,
+            ease: "power2.inOut",
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate each experience item with simpler animations
+      experienceRefs.current.forEach((item, index) => {
+        if (!item) return;
+
+        const dot = item.querySelector(".timeline-dot");
+        const card = item.querySelector(".experience-card");
+
+        // Simple dot fade in (removed pulsing)
+        if (dot) {
+          gsap.fromTo(
+            dot,
+            {
+              scale: 0,
+              opacity: 0,
+            },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+
+        // Simple card fade and slide (removed rotation and parallax)
+        if (card) {
+          gsap.fromTo(
+            card,
+            {
+              opacity: 0,
+              y: 30,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <SectionWrapper id="experience" className="min-h-screen py-20">
       <div className="max-w-5xl mx-auto w-full">
@@ -23,19 +112,20 @@ export default function ExperienceSection() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div ref={timelineRef} className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border transform md:-translate-x-1/2" />
+          <div
+            ref={lineRef}
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 transform md:-translate-x-1/2"
+            style={{ transformOrigin: "top" }}
+          />
 
           {/* Experience Items */}
           <div className="space-y-12">
             {config.experience.map((exp, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                ref={(el) => (experienceRefs.current[index] = el)}
                 className={`relative flex items-center ${
                   index % 2 === 0
                     ? "md:flex-row"
@@ -43,7 +133,7 @@ export default function ExperienceSection() {
                 } flex-row gap-8`}
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background transform md:-translate-x-1/2 z-10" />
+                <div className="timeline-dot absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background transform md:-translate-x-1/2 z-10" />
 
                 {/* Content */}
                 <div
@@ -53,7 +143,7 @@ export default function ExperienceSection() {
                       : "md:text-left md:pl-16"
                   } ml-16 md:ml-0`}
                 >
-                  <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                  <div className="experience-card bg-card border border-border rounded-lg p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300">
                     {/* Company & Role */}
                     <h3 className="text-xl font-bold mb-1">{exp.role}</h3>
                     <h4 className="text-lg text-primary mb-2">
@@ -77,7 +167,7 @@ export default function ExperienceSection() {
                           key={idx}
                           className="flex items-start gap-2 text-sm"
                         >
-                          <span className="text-primary mt-1">✓</span>
+                          <span className="text-primary mt-1 text-lg">✓</span>
                           <span>{achievement}</span>
                         </div>
                       ))}
@@ -87,7 +177,7 @@ export default function ExperienceSection() {
 
                 {/* Spacer for alternating layout */}
                 <div className="hidden md:block flex-1" />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

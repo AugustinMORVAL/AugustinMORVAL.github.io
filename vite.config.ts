@@ -16,8 +16,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'animation-vendor': ['framer-motion', 'gsap'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
+          'animation-vendor': ['framer-motion', 'gsap', 'lenis'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-toast', '@radix-ui/react-tooltip', '@radix-ui/react-tabs'],
         },
       },
     },

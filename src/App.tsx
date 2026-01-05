@@ -1,5 +1,6 @@
 import { ThemeProvider } from "./components/theme-provider";
 import { Toaster } from "./components/ui/toaster";
+import { TooltipProvider } from "./components/ui/tooltip";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import HeroSection from "./components/sections/hero";
@@ -9,6 +10,8 @@ import ProjectsSection from "./components/sections/projects";
 import ContactSection from "./components/sections/contact";
 import ParticlesBackground from "./components/particles-background";
 import { ErrorBoundary } from "react-error-boundary";
+import { useLenis } from "./hooks/useLenis";
+import { useGSAPScrollTrigger } from "./hooks/useGSAPScrollTrigger";
 
 function ErrorFallback({ error }: { error: Error }) {
   return (
@@ -22,9 +25,16 @@ function ErrorFallback({ error }: { error: Error }) {
 }
 
 function App() {
+  // Initialize smooth scrolling with Lenis
+  useLenis();
+  
+  // Initialize GSAP ScrollTrigger
+  useGSAPScrollTrigger();
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+        <TooltipProvider delayDuration={200}>
         <div className="relative min-h-screen overflow-hidden">
           {/* Animated gradient background */}
           <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800" />
@@ -57,6 +67,7 @@ function App() {
           {/* Toast Notifications */}
           <Toaster />
         </div>
+        </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
