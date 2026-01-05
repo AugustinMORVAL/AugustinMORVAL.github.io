@@ -1,10 +1,12 @@
+import { SkillNames } from "./skills-data";
+
 export const config = {
   name: "Augustin MORVAL",
   title: "Data Scientist",
   description: {
     long: "Data Scientist focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
     short:
-      "Data Scientist building end-to-end ML solutions (LLMs/NLP, Computer Vision, Audio) in Python.",
+      "Data Scientist bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions that drive measurable impact.",
   },
   email: "augustin.morval.pro@gmail.com",
   resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",
@@ -15,108 +17,72 @@ export const config = {
     linkedin: "https://linkedin.com/in/augustin-morval",
   },
 
-  skills: [
-    {
-      name: "Python",
-      category: "Language",
-      level: "Advanced",
-    },
-    {
-      name: "NumPy",
-      category: "Data",
-      level: "Advanced",
-    },
-    {
-      name: "Pandas",
-      category: "Data",
-      level: "Advanced",
-    },
-    {
-      name: "SciPy",
-      category: "Data",
-      level: "Intermediate",
-    },
-    {
-      name: "scikit-learn",
-      category: "Machine Learning",
-      level: "Intermediate",
-    },
-    {
-      name: "TensorFlow",
-      category: "Machine Learning",
-      level: "Intermediate",
-    },
-    {
-      name: "Matplotlib",
-      category: "Visualization",
-      level: "Intermediate",
-    },
-    {
-      name: "Plotly",
-      category: "Visualization",
-      level: "Intermediate",
-    },
-    {
-      name: "Streamlit",
-      category: "Tools",
-      level: "Intermediate",
-    },
-    {
-      name: "MLflow",
-      category: "MLOps",
-      level: "Intermediate",
-    },
-    {
-      name: "Git",
-      category: "Tools",
-      level: "Advanced",
-    },
-    {
-      name: "GitHub Actions",
-      category: "DevOps",
-      level: "Intermediate",
-    },
-    {
-      name: "Google Cloud",
-      category: "Cloud",
-      level: "Intermediate",
-    },
-    {
-      name: "MongoDB",
-      category: "Databases",
-      level: "Intermediate",
-    },
-    {
-      name: "MySQL",
-      category: "Databases",
-      level: "Intermediate",
-    },
-    {
-      name: "Flask",
-      category: "Backend",
-      level: "Intermediate",
-    },
-    {
-      name: "LangChain",
-      category: "LLM Apps",
-      level: "Intermediate",
-    },
-    {
-      name: "Ollama",
-      category: "LLM Apps",
-      level: "Intermediate",
-    },
-    {
-      name: "MCP",
-      category: "LLM Apps",
-      level: "Intermediate",
-    },
-    {
-      name: "React",
-      category: "Frontend",
-      level: "Intermediate",
-    },
-  ],
+  // Active skills with personal proficiency levels
+  activeSkills: [
+    // Languages
+    { name: SkillNames.PYTHON, level: 3 },
+    { name: SkillNames.SQL, level: 2 },
+    { name: SkillNames.JAVASCRIPT, level: 1 },
+    { name: SkillNames.TYPESCRIPT, level: 1 },
+
+    // Data Processing
+    { name: SkillNames.NUMPY, level: 3 },
+    { name: SkillNames.PANDAS, level: 3 },
+    { name: SkillNames.SCIPY, level: 2 },
+
+    // Machine Learning
+    { name: SkillNames.SCIKIT_LEARN, level: 3 },
+    { name: SkillNames.YOLO, level: 3 },
+    { name: SkillNames.OPENCV, level: 2 },
+    {name: SkillNames.PADDLE_OCR, level: 2},
+    { name: SkillNames.WHISPER, level: 3 },
+    { name: SkillNames.PYANNOTE, level: 2 },
+
+    // Visualization
+    { name: SkillNames.MATPLOTLIB, level: 3 },
+    { name: SkillNames.PLOTLY, level: 3 },
+    { name: SkillNames.SEABORN, level: 3 },
+
+    // Tools
+    { name: SkillNames.STREAMLIT, level: 3 },
+    { name: SkillNames.GRADIO, level: 2 },
+    { name: SkillNames.JUPYTER, level: 3 },
+    { name: SkillNames.GIT, level: 3 },
+
+    // MLOps
+    { name: SkillNames.DOCKER, level: 2 },
+    { name: SkillNames.MLFLOW, level: 1 },
+
+    // DevOps
+    { name: SkillNames.GITHUB_ACTIONS, level: 1 },
+
+    // Cloud
+    { name: SkillNames.GOOGLE_CLOUD, level: 1 },
+
+    // Databases
+    { name: SkillNames.MONGODB, level: 2 },
+    { name: SkillNames.MYSQL, level: 2 },
+    { name: SkillNames.REDIS, level: 1 },
+
+    // Backend
+    { name: SkillNames.FLASK, level: 3 },
+    { name: SkillNames.FASTAPI, level: 3 },
+
+    // LLM Apps
+    { name: SkillNames.LANGCHAIN, level: 3 },
+    { name: SkillNames.LLAMAINDEX, level: 2 },
+    { name: SkillNames.OLLAMA, level: 3 },
+    { name: SkillNames.HUGGINGFACE, level: 3 },
+    { name: SkillNames.OPENAI, level: 3 },
+    { name: SkillNames.GROQ, level: 2 },
+    { name: SkillNames.CHROMADB, level: 2 },
+
+    // Frontend
+    { name: SkillNames.REACT, level: 1},
+    { name: SkillNames.VITE, level: 1 },
+    { name: SkillNames.HTML, level: 2 },
+    { name: SkillNames.CSS, level: 2 },
+  ] as const,
 
   experience: [
     {
