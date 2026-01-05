@@ -261,24 +261,6 @@ export default function ContactSection() {
                   </TooltipContent>
                 </Tooltip>
 
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <motion.a
-                      href={config.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
-                      aria-label="X (Twitter)"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <SiX className="h-6 w-6" />
-                    </motion.a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Follow me on X</p>
-                  </TooltipContent>
-                </Tooltip>
               </div>
             </div>
           </div>

@@ -2,15 +2,30 @@ import SectionWrapper from "../ui/section-wrapper";
 import { config } from "@/data/config";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { FcScatterPlot } from "react-icons/fc";
 import {
-  SiReact,
-  SiTypescript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiNextdotjs,
-  SiPostgresql,
+  SiFlask,
+  SiGithubactions,
+  SiGooglecloud,
   SiMongodb,
+  SiMysql,
+  SiNumpy,
+  SiPandas,
+  SiPlotly,
+  SiPython,
+  SiScikitlearn,
+  SiScipy,
+  SiStreamlit,
+  SiTensorflow,
+  SiReact,
   SiGit,
+  SiCodesandbox,
+  SiMlflow,
+  SiLangchain,
+  SiOllama,
+  SiOpenai,
+  SiPytorch,
+  SiHuggingface,
 } from "react-icons/si";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
@@ -18,13 +33,28 @@ import { gsap } from "gsap";
 
 const skillIcons: Record<string, React.ReactNode> = {
   React: <SiReact />,
-  TypeScript: <SiTypescript />,
-  "Node.js": <SiNodedotjs />,
-  "Tailwind CSS": <SiTailwindcss />,
-  "Next.js": <SiNextdotjs />,
-  PostgreSQL: <SiPostgresql />,
+  Python: <SiPython />,
+  "Google Cloud": <SiGooglecloud />,
   MongoDB: <SiMongodb />,
+  MySQL: <SiMysql />,
+  "scikit-learn": <SiScikitlearn />,
+  SciPy: <SiScipy />,
+  TensorFlow: <SiTensorflow />,
+  Matplotlib: <FcScatterPlot />,
+  NumPy: <SiNumpy />,
+  Pandas: <SiPandas />,
+  Plotly: <SiPlotly />,
+  MLflow: <SiMlflow />,
   Git: <SiGit />,
+  "GitHub Actions": <SiGithubactions />,
+  Streamlit: <SiStreamlit />,
+  Flask: <SiFlask />,
+  LangChain: <SiLangchain />,
+  Ollama: <SiOllama />,
+  MCP: <SiHuggingface />,
+  Whisper: <SiOpenai />,
+  PyTorch: <SiPytorch />,
+  YOLO: <span className="font-bold">YOLO</span>,
 };
 
 // Group skills by category
@@ -110,7 +140,7 @@ export default function SkillsSection() {
                   className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transform-style-3d"
                 >
                   {groupedSkills[category].map((skill) => {
-                    const icon = skillIcons[skill.name];
+                    const icon = skillIcons[skill.name] ?? <SiCodesandbox />;
                     const isHovered = hoveredSkill === skill.name;
                     
                     const levelDetails = {

@@ -1,55 +1,69 @@
 export const config = {
-  name: "Your Name",
-  title: "Full-Stack Developer",
+  name: "Augustin MORVAL",
+  title: "Data Scientist",
   description: {
-    long: "Explore my portfolio showcasing modern web applications, innovative projects, and cutting-edge technologies. Specialized in React, TypeScript, Node.js, and creating beautiful user experiences.",
-    short: "Full-stack developer creating innovative web applications with modern technologies.",
+    long: "Data Scientist focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
+    short:
+      "Data Scientist building end-to-end ML solutions (LLMs/NLP, Computer Vision, Audio) in Python.",
   },
-  email: "your.email@example.com",
+  email: "augustin.morval.pro@gmail.com",
   resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",
   site: "https://yourusername.github.io",
   
   social: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    twitter: "https://twitter.com/yourusername",
-    instagram: "https://instagram.com/yourusername",
+    github: "https://github.com/AugustinMORVAL",
+    linkedin: "https://linkedin.com/in/augustin-morval",
   },
 
   skills: [
     {
-      name: "React",
-      category: "Frontend",
-      level: "Advanced",
-    },
-    {
-      name: "TypeScript",
+      name: "Python",
       category: "Language",
       level: "Advanced",
     },
     {
-      name: "Node.js",
-      category: "Backend",
-      level: "Intermediate",
-    },
-    {
-      name: "Tailwind CSS",
-      category: "Styling",
+      name: "NumPy",
+      category: "Data",
       level: "Advanced",
     },
     {
-      name: "Next.js",
-      category: "Framework",
+      name: "Pandas",
+      category: "Data",
       level: "Advanced",
     },
     {
-      name: "PostgreSQL",
-      category: "Database",
+      name: "SciPy",
+      category: "Data",
       level: "Intermediate",
     },
     {
-      name: "MongoDB",
-      category: "Database",
+      name: "scikit-learn",
+      category: "Machine Learning",
+      level: "Intermediate",
+    },
+    {
+      name: "TensorFlow",
+      category: "Machine Learning",
+      level: "Intermediate",
+    },
+    {
+      name: "Matplotlib",
+      category: "Visualization",
+      level: "Intermediate",
+    },
+    {
+      name: "Plotly",
+      category: "Visualization",
+      level: "Intermediate",
+    },
+    {
+      name: "Streamlit",
+      category: "Tools",
+      level: "Intermediate",
+    },
+    {
+      name: "MLflow",
+      category: "MLOps",
       level: "Intermediate",
     },
     {
@@ -57,40 +71,105 @@ export const config = {
       category: "Tools",
       level: "Advanced",
     },
+    {
+      name: "GitHub Actions",
+      category: "DevOps",
+      level: "Intermediate",
+    },
+    {
+      name: "Google Cloud",
+      category: "Cloud",
+      level: "Intermediate",
+    },
+    {
+      name: "MongoDB",
+      category: "Databases",
+      level: "Intermediate",
+    },
+    {
+      name: "MySQL",
+      category: "Databases",
+      level: "Intermediate",
+    },
+    {
+      name: "Flask",
+      category: "Backend",
+      level: "Intermediate",
+    },
+    {
+      name: "LangChain",
+      category: "LLM Apps",
+      level: "Intermediate",
+    },
+    {
+      name: "Ollama",
+      category: "LLM Apps",
+      level: "Intermediate",
+    },
+    {
+      name: "MCP",
+      category: "LLM Apps",
+      level: "Intermediate",
+    },
+    {
+      name: "React",
+      category: "Frontend",
+      level: "Intermediate",
+    },
   ],
 
   experience: [
     {
-      company: "Tech Company",
-      role: "Senior Full-Stack Developer",
-      duration: "2022 - Present",
-      description: "Led development of modern web applications using React, TypeScript, and Node.js. Implemented responsive designs and optimized performance.",
+      company: "Artefact",
+      role: "Data Consultant",
+      duration: "Apr 2025 - Present",
+      description: "Details coming soon.",
+      achievements: [],
+    },
+    {
+      company: "Wavestone",
+      role: "Financial Services Analyst",
+      duration: "Jun 2024 - Sep 2024",
+      description:
+        "Worked on operational procedures/control systems analysis and explored LLM benchmarking for agentic workflows in a banking context.",
       achievements: [
-        "Improved application performance by 40%",
-        "Mentored junior developers",
-        "Implemented CI/CD pipelines",
+        "Analyzed operational procedures and control systems; identified gaps and documented discrepancies.",
+        "Benchmarked open-source LLMs and compared capabilities for integration into a network of autonomous agents.",
       ],
     },
     {
-      company: "Startup Inc",
-      role: "Full-Stack Developer",
-      duration: "2020 - 2022",
-      description: "Developed and maintained full-stack applications using MERN stack. Collaborated with designers and product managers.",
+      company: "Abbott",
+      role: "Junior Consultant",
+      duration: "Oct 2022 - Apr 2023",
+      description:
+        "Go-to-market strategy and analytics work for a digital healthcare solution across APAC.",
       achievements: [
-        "Built 3 major features from scratch",
-        "Reduced bug reports by 30%",
-        "Implemented real-time features with WebSocket",
+        "Conducted market research across 8 APAC countries to refine go-to-market strategy.",
+        "Performed quantitative/qualitative analysis and validated insights with 26 expert interviews.",
+        "Delivered 7 strategic recommendations across strategy, org structure and value proposition.",
       ],
     },
     {
-      company: "Digital Agency",
-      role: "Frontend Developer",
-      duration: "2018 - 2020",
-      description: "Created responsive and accessible web interfaces. Worked with various clients on diverse projects.",
+      company: "Groupe CréO",
+      role: "M&A Analyst",
+      duration: "Jan 2022 - Jun 2022",
+      description:
+        "Financial modeling, scenario analysis, and operational restructuring in a transaction context.",
       achievements: [
-        "Delivered 15+ client projects",
-        "Achieved 95+ Lighthouse scores",
-        "Implemented modern animations with GSAP",
+        "Built predictive financial scenarios and cost analyses to support strategic decision-making.",
+        "Led supply-chain restructuring across overseas territories, reducing logistics costs by 15%.",
+        "Supported buy-side valuations and sell-side diligence for a €15M divestiture.",
+      ],
+    },
+    {
+      company: "LFB",
+      role: "Management Controller",
+      duration: "Feb 2021 - Jul 2021",
+      description:
+        "Financial reporting, budgeting, and automation initiatives supporting large-scale operations.",
+      achievements: [
+        "Produced monthly reporting and supervised R&D budgets; supported payroll for 2300+ employees.",
+        "Automated reporting analysis in Excel, doubling efficiency (2×).",
       ],
     },
   ],
