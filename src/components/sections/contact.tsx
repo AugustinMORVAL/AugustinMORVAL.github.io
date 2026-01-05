@@ -31,7 +31,6 @@ export default function ContactSection() {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
   
   const {
     register,
@@ -68,7 +67,6 @@ export default function ContactSection() {
         );
       }
 
-      // Animate form with rotation
       if (formRef.current) {
         const formFields = formRef.current.querySelectorAll(".form-field");
         
@@ -93,7 +91,6 @@ export default function ContactSection() {
           }
         );
 
-        // Animate form fields sequentially
         gsap.fromTo(
           formFields,
           {
@@ -115,40 +112,6 @@ export default function ContactSection() {
         );
       }
 
-      // Magnetic effect for submit button
-      if (submitButtonRef.current) {
-        const button = submitButtonRef.current;
-
-        const handleMouseMove = (e: MouseEvent) => {
-          const rect = button.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-
-          gsap.to(button, {
-            x: x * 0.3,
-            y: y * 0.3,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        };
-
-        const handleMouseLeave = () => {
-          gsap.to(button, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: "elastic.out(1, 0.5)",
-          });
-        };
-
-        button.addEventListener("mousemove", handleMouseMove);
-        button.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-          button.removeEventListener("mousemove", handleMouseMove);
-          button.removeEventListener("mouseleave", handleMouseLeave);
-        };
-      }
     });
 
     return () => ctx.revert();
@@ -376,7 +339,6 @@ export default function ContactSection() {
 
             {/* Submit Button */}
             <Button
-              ref={submitButtonRef}
               type="submit"
               className="form-field w-full gap-2"
               size="lg"

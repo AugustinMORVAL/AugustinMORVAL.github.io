@@ -8,6 +8,7 @@ import ScrollDownIcon from "../scroll-down-icon";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   const nameRef = useRef<HTMLHeadingElement>(null);
@@ -65,36 +66,6 @@ export default function HeroSection() {
         },
         "-=0.2"
       );
-
-      buttonRefs.current.forEach((button) => {
-        if (!button) return;
-
-        const handleMouseMove = (e: Event) => {
-          const mouseEvent = e as MouseEvent;
-          const rect = button.getBoundingClientRect();
-          const x = mouseEvent.clientX - rect.left - rect.width / 2;
-          const y = mouseEvent.clientY - rect.top - rect.height / 2;
-
-          gsap.to(button, {
-            x: x * 0.3,
-            y: y * 0.3,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        };
-
-        const handleMouseLeave = () => {
-          gsap.to(button, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: "elastic.out(1, 0.5)",
-          });
-        };
-
-        button.addEventListener("mousemove", handleMouseMove);
-        button.addEventListener("mouseleave", handleMouseLeave);
-      });
     });
 
     return () => ctx.revert();
@@ -145,7 +116,7 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col gap-3 w-full sm:w-fit">
             {/* Resume Button */}
-            <a
+            <motion.a
               href={config.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -153,6 +124,9 @@ export default function HeroSection() {
               ref={(el) => {
                 buttonRefs.current[0] = el;
               }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <BoxReveal delay={2} width="100%">
                 <Button className="flex items-center justify-center gap-2 w-full bg-foreground text-background hover:bg-foreground/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90 font-medium border-0">
@@ -160,17 +134,20 @@ export default function HeroSection() {
                   <span>Resume</span>
                 </Button>
               </BoxReveal>
-            </a>
+            </motion.a>
 
             {/* Second Row: Hire Me + Social Buttons */}
             <div className="flex gap-3 w-full">
               {/* Hire Me Button */}
-              <a
+              <motion.a
                 href="#contact"
                 className="flex-1"
                 ref={(el) => {
                   buttonRefs.current[1] = el;
                 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Button
                   variant="outline"
@@ -178,24 +155,27 @@ export default function HeroSection() {
                 >
                   Hire Me
                 </Button>
-              </a>
+              </motion.a>
 
               {/* Social Buttons Container */}
               <div className="flex items-center gap-2">
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <a
+                    <motion.a
                       href={config.social.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       ref={(el) => {
                         buttonRefs.current[2] = el;
                       }}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                       <Button variant="outline" className="px-3" aria-label="GitHub">
                         <SiGithub size={20} />
                       </Button>
-                    </a>
+                    </motion.a>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>View my GitHub profile</p>
@@ -204,18 +184,21 @@ export default function HeroSection() {
 
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <a
+                    <motion.a
                       href={config.social.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       ref={(el) => {
                         buttonRefs.current[3] = el;
                       }}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                       <Button variant="outline" className="px-3" aria-label="LinkedIn">
                         <SiLinkedin size={20} />
                       </Button>
-                    </a>
+                    </motion.a>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Connect on LinkedIn</p>
