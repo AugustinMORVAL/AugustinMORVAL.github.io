@@ -11,7 +11,7 @@ import { Label } from "../ui/label";
 import { useToast } from "../../hooks/use-toast";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import { Mail, Send } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
