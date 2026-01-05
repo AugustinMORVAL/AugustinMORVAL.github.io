@@ -1,5 +1,5 @@
-import { useCallback, useState, useEffect } from "react";
-import Particles from "@tsparticles/react";
+import { useState, useEffect } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import { useTheme } from "./theme-provider";
@@ -7,28 +7,33 @@ import { useTheme } from "./theme-provider";
 export default function ParticlesBackground() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [engineInitialized, setEngineInitialized] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
+  useEffect(() => {
+    if (mounted) {
+      initParticlesEngine(async (engine: Engine) => {
+        await loadSlim(engine);
+        setEngineInitialized(true);
+      });
+    }
+  }, [mounted]);
 
   const isDark = mounted && (
     theme === "dark" || 
     (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches)
   );
 
-  if (!mounted) {
+  if (!mounted || !engineInitialized) {
     return null;
   }
 
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
       options={{
         background: {
           color: {

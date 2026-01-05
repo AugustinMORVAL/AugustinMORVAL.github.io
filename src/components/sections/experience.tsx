@@ -14,7 +14,6 @@ export default function ExperienceSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate timeline line drawing (keep this - it's nice and subtle)
       if (lineRef.current) {
         gsap.fromTo(
           lineRef.current,
@@ -36,14 +35,12 @@ export default function ExperienceSection() {
         );
       }
 
-      // Animate each experience item with simpler animations
-      experienceRefs.current.forEach((item, index) => {
+      experienceRefs.current.forEach((item) => {
         if (!item) return;
 
         const dot = item.querySelector(".timeline-dot");
         const card = item.querySelector(".experience-card");
 
-        // Simple dot fade in (removed pulsing)
         if (dot) {
           gsap.fromTo(
             dot,
@@ -65,7 +62,6 @@ export default function ExperienceSection() {
           );
         }
 
-        // Simple card fade and slide (removed rotation and parallax)
         if (card) {
           gsap.fromTo(
             card,
@@ -125,7 +121,11 @@ export default function ExperienceSection() {
             {config.experience.map((exp, index) => (
               <div
                 key={index}
-                ref={(el) => (experienceRefs.current[index] = el)}
+                ref={(el) => {
+                  if (el) {
+                    experienceRefs.current[index] = el;
+                  }
+                }}
                 className={`relative flex items-center ${
                   index % 2 === 0
                     ? "md:flex-row"

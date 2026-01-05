@@ -1,5 +1,5 @@
 import SectionWrapper from "../ui/section-wrapper";
-import projects from "@/data/projects";
+import projects, { type Project, type Skill } from "@/data/projects";
 import { motion } from "framer-motion";
 import {
   Dialog,
@@ -125,11 +125,13 @@ export default function ProjectsSection() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project: Project, index: number) => (
             <Dialog key={project.id}>
               <DialogTrigger asChild>
                 <div
-                  ref={(el) => (projectRefs.current[index] = el)}
+                  ref={(el) => {
+                    projectRefs.current[index] = el;
+                  }}
                   onMouseMove={(e) => handleMouseMove(e, index)}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
@@ -195,7 +197,7 @@ export default function ProjectsSection() {
                             Frontend
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {project.skills.frontend.map((skill) => (
+                            {project.skills.frontend.map((skill: Skill) => (
                               <motion.div
                                 key={skill.title}
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -216,7 +218,7 @@ export default function ProjectsSection() {
                             Backend
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {project.skills.backend.map((skill) => (
+                            {project.skills.backend.map((skill: Skill) => (
                               <motion.div
                                 key={skill.title}
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -238,7 +240,7 @@ export default function ProjectsSection() {
                   <div>
                     <h4 className="text-lg font-semibold mb-4">Key Features</h4>
                     <ul className="space-y-2">
-                      {project.features.map((feature, idx) => (
+                      {project.features.map((feature: string, idx: number) => (
                         <motion.li
                           key={idx}
                           initial={{ opacity: 0, x: -20 }}

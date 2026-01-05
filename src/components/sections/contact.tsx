@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
-import { useToast } from "../ui/use-toast";
+import { useToast } from "../../hooks/use-toast";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import { Mail, Send } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
