@@ -6,28 +6,29 @@ import { useTheme } from "./theme-provider";
 
 export default function ParticlesBackground() {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [engineInitialized, setEngineInitialized] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    let cancelled = false;
+
+    initParticlesEngine(async (engine: Engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      if (!cancelled) setEngineInitialized(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  useEffect(() => {
-    if (mounted) {
-      initParticlesEngine(async (engine: Engine) => {
-        await loadSlim(engine);
-        setEngineInitialized(true);
-      });
-    }
-  }, [mounted]);
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-  const isDark = mounted && (
-    theme === "dark" || 
-    (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches)
-  );
-
-  if (!mounted || !engineInitialized) {
+  if (!engineInitialized) {
     return null;
   }
 

@@ -1012,7 +1012,6 @@ export const getSkillIcon = (skillName: string): ReactNode => {
     loading: "lazy",
     style: {
       imageRendering: "crisp-edges",
-      WebkitImageRendering: "crisp-edges" as any,
     } as React.CSSProperties,
   });
 };

@@ -143,8 +143,7 @@ export default function ContactSection() {
       });
 
       reset();
-    } catch (error) {
-      // Error animation
+    } catch {
       if (formRef.current) {
         gsap.to(formRef.current, {
           x: -10,
@@ -268,6 +267,7 @@ export default function ContactSection() {
           {/* Contact Form */}
           <form
             ref={formRef}
+            // eslint-disable-next-line react-hooks/refs
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-6"
             style={{ transformStyle: "preserve-3d" }}

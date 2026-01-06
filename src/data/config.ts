@@ -94,13 +94,13 @@ export const config = {
     },
     {
       company: "Wavestone",
-      role: "Financial Services Analyst",
+      role: "Junior Consultant",
       duration: "Jun 2024 - Sep 2024",
       description:
         "Worked on operational procedures/control systems analysis and explored LLM benchmarking for agentic workflows in a banking context.",
       achievements: [
-        "Analyzed operational procedures and control systems; identified gaps and documented discrepancies.",
         "Benchmarked open-source LLMs and compared capabilities for integration into a network of autonomous agents.",
+        "Analyzed operational procedures and control systems; identified gaps and documented discrepancies.",
       ],
     },
     {
@@ -127,15 +127,57 @@ export const config = {
         "Supported buy-side valuations and sell-side diligence for a €15M divestiture.",
       ],
     },
+  ],
+
+  education: [
     {
-      company: "LFB",
-      role: "Management Controller",
-      duration: "Feb 2021 - Jul 2021",
+      institution: "Artefact School of Data",
+      program: "Data Science",
+      duration: "Jan 2025 - Mar 2025",
       description:
-        "Financial reporting, budgeting, and automation initiatives supporting large-scale operations.",
-      achievements: [
-        "Produced monthly reporting and supervised R&D budgets; supported payroll for 2300+ employees.",
-        "Automated reporting analysis in Excel, doubling efficiency (2×).",
+        "12-week intensive, full-time program focused on building production-minded ML: framing problems, shipping reliable models, and deploying them as usable services.",
+      highlights: [
+        "Delivered end-to-end ML projects with an engineering mindset: reproducible experiments, clear evaluation, and deployment-ready packaging",
+        "Built and optimized supervised/unsupervised models (feature engineering, tuning, pipelines) with measurable performance improvements",
+        "Applied deep learning (CNN/RNN/Transformers) to real CV & NLP cases, focusing on robustness and practical constraints",
+        "Production & MLOps fundamentals: Docker, MLflow, FastAPI, CI/CD, and cloud deployment patterns for maintainable systems",
+        "Data foundations: SQL + Python (NumPy/Pandas) and clear storytelling via visualization (Matplotlib/Plotly)",
+      ],
+      skills: ["Python", "Machine Learning", "Deep Learning", "MLOps", "Databases"],
+    },
+    {
+      institution: "ESSEC Asia-Pacific",
+      program: "Master in Strategy and Management of International Business",
+      duration: "Sep 2022 - Apr 2023",
+      description:
+        "Strategy and international business program focused on turning ambiguity into decisions: market analysis, stakeholder alignment, and execution in an APAC context.",
+      highlights: [
+        "Built a strong strategy toolkit: business development, innovation, cost analysis, and market/geo context (APAC)",
+        "Strengthened negotiation and cross-cultural communication through projects and stakeholder-heavy work",
+      ],
+      skills: [
+        "Business Strategy",
+        "International Business",
+        "Cross-cultural Communication",
+        "Project Management",
+      ],
+    },
+    {
+      institution: "ESSCA",
+      program: "Master in Corporate Finance",
+      duration: "Sep 2017 - Jun 2022",
+      description:
+        "Corporate finance program focused on rigorous analysis and decision support: valuation, financial modeling, and M&A fundamentals.",
+      highlights: [
+        "Built strong fundamentals in valuation and modeling used in real-world investment and transaction contexts",
+        "Developed a structured approach to financial analysis: assumptions, scenario thinking, and decision-ready outputs",
+      ],
+      skills: [
+        "Corporate Finance",
+        "Financial Modeling",
+        "Business Valuation",
+        "Mergers & Acquisitions (M&A)",
+        "Investments",
       ],
     },
   ],
