@@ -1,5 +1,5 @@
 import { config } from "@/data/config";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,15 +32,6 @@ export default function Footer() {
               aria-label="LinkedIn"
             >
               <SiLinkedin className="h-5 w-5" />
-            </a>
-            <a
-              href={config.social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="X (Twitter)"
-            >
-              <SiX className="h-5 w-5" />
             </a>
           </div>
         </div>
