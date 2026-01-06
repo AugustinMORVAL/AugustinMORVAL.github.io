@@ -161,7 +161,7 @@ export default function ExperienceSection() {
                     </p>
 
                     {/* Achievements */}
-                    <div className="space-y-2">
+                    <div className="space-y-2 mb-4">
                       {exp.achievements.map((achievement, idx) => (
                         <div
                           key={idx}
@@ -172,6 +172,20 @@ export default function ExperienceSection() {
                         </div>
                       ))}
                     </div>
+
+                    {/* Skills */}
+                    {exp.skills && exp.skills.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground border border-border/60"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 

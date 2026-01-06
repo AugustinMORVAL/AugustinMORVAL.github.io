@@ -69,7 +69,7 @@ const projects: Project[] = [
     title: "Multitask Chatbot (RAG + Document Processing)",
     category: "LLM Apps",
     description:
-      "A Streamlit LLM application combining chat, multi-format document ingestion (PDF/PPT/Excel), and vector search/RAG with model selection.",
+      "A Streamlit LLM application combining chat, multi-format document ingestion (PDF/PPT/Excel) and vector search/RAG with model selection.",
     src: "/vite.svg",
     screenshots: [],
     skills: {

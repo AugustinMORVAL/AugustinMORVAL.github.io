@@ -6,7 +6,7 @@ export const config = {
   description: {
     long: "Data Scientist focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
     short:
-      "Data Scientist bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions that drive measurable impact.",
+      "Data Scientist bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
   },
   email: "augustin.morval.pro@gmail.com",
   resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",
@@ -91,6 +91,7 @@ export const config = {
       duration: "Apr 2025 - Present",
       description: "Details coming soon.",
       achievements: [],
+      skills: [],
     },
     {
       company: "Wavestone",
@@ -102,6 +103,11 @@ export const config = {
         "Benchmarked open-source LLMs and compared capabilities for integration into a network of autonomous agents.",
         "Analyzed operational procedures and control systems; identified gaps and documented discrepancies.",
       ],
+      skills: [
+        "LLM Benchmarking",
+        "Agentic Workflows",
+        "Process Analysis",
+      ],
     },
     {
       company: "Abbott",
@@ -112,7 +118,11 @@ export const config = {
       achievements: [
         "Conducted market research across 8 APAC countries to refine go-to-market strategy.",
         "Performed quantitative/qualitative analysis and validated insights with 26 expert interviews.",
-        "Delivered 7 strategic recommendations across strategy, org structure and value proposition.",
+        "Delivered 7 strategic recommendations across strategy, structure and value proposition.",
+      ],
+      skills: [
+        "Market Research",
+        "Quantitative/Qualitative Analysis",
       ],
     },
     {
@@ -120,11 +130,16 @@ export const config = {
       role: "M&A Analyst",
       duration: "Jan 2022 - Jun 2022",
       description:
-        "Financial modeling, scenario analysis, and operational restructuring in a transaction context.",
+        "Financial modeling, scenario analysis and operational restructuring in a transaction context.",
       achievements: [
         "Built predictive financial scenarios and cost analyses to support strategic decision-making.",
         "Led supply-chain restructuring across overseas territories, reducing logistics costs by 15%.",
         "Supported buy-side valuations and sell-side diligence for a €15M divestiture.",
+      ],
+      skills: [
+        "Financial Modeling",
+        "Business Valuation",
+        "Due Diligence",
       ],
     },
   ],
@@ -135,12 +150,12 @@ export const config = {
       program: "Data Science",
       duration: "Jan 2025 - Mar 2025",
       description:
-        "12-week intensive, full-time program focused on building production-minded ML: framing problems, shipping reliable models, and deploying them as usable services.",
+        "12-week intensive, full-time program focused on building production-minded ML: framing problems, shipping reliable models and deploying them as usable services.",
       highlights: [
-        "Delivered end-to-end ML projects with an engineering mindset: reproducible experiments, clear evaluation, and deployment-ready packaging",
+        "Delivered end-to-end ML projects with an engineering mindset: reproducible experiments, clear evaluation and deployment-ready packaging",
         "Built and optimized supervised/unsupervised models (feature engineering, tuning, pipelines) with measurable performance improvements",
         "Applied deep learning (CNN/RNN/Transformers) to real CV & NLP cases, focusing on robustness and practical constraints",
-        "Production & MLOps fundamentals: Docker, MLflow, FastAPI, CI/CD, and cloud deployment patterns for maintainable systems",
+        "Production & MLOps fundamentals: Docker, MLflow, FastAPI, CI/CD and cloud deployment patterns for maintainable systems",
         "Data foundations: SQL + Python (NumPy/Pandas) and clear storytelling via visualization (Matplotlib/Plotly)",
       ],
       skills: ["Python", "Machine Learning", "Deep Learning", "MLOps", "Databases"],
@@ -150,9 +165,9 @@ export const config = {
       program: "Master in Strategy and Management of International Business",
       duration: "Sep 2022 - Apr 2023",
       description:
-        "Strategy and international business program focused on turning ambiguity into decisions: market analysis, stakeholder alignment, and execution in an APAC context.",
+        "Strategy and international business program focused on turning ambiguity into decisions: market analysis, stakeholder alignment and execution in an APAC context.",
       highlights: [
-        "Built a strong strategy toolkit: business development, innovation, cost analysis, and market/geo context (APAC)",
+        "Built a strong strategy toolkit: business development, innovation, cost analysis and market/geo context (APAC)",
         "Strengthened negotiation and cross-cultural communication through projects and stakeholder-heavy work",
       ],
       skills: [
@@ -167,10 +182,10 @@ export const config = {
       program: "Master in Corporate Finance",
       duration: "Sep 2017 - Jun 2022",
       description:
-        "Corporate finance program focused on rigorous analysis and decision support: valuation, financial modeling, and M&A fundamentals.",
+        "Corporate finance program focused on rigorous analysis and decision support: valuation, financial modeling and M&A fundamentals.",
       highlights: [
         "Built strong fundamentals in valuation and modeling used in real-world investment and transaction contexts",
-        "Developed a structured approach to financial analysis: assumptions, scenario thinking, and decision-ready outputs",
+        "Developed a structured approach to financial analysis: assumptions, scenario thinking and decision-ready outputs",
       ],
       skills: [
         "Corporate Finance",
