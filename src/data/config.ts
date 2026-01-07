@@ -2,11 +2,11 @@ import { SkillNames } from "./skills-data";
 
 export const config = {
   name: "Augustin MORVAL",
-  title: "Data Scientist",
+  title: "AI/Data Developer",
   description: {
-    long: "Data Scientist focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
+    long: "AI Developer focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
     short:
-      "Data Scientist bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
+      "AI Developer bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
   },
   email: "augustin.morval.pro@gmail.com",
   resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",

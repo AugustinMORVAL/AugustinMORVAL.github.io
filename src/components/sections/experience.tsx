@@ -146,8 +146,8 @@ export default function ExperienceSection() {
                   <div className="experience-card bg-card border border-border rounded-lg p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300">
                     {/* Company & Role */}
                     <h3 className="text-xl font-bold mb-1">{exp.role}</h3>
-                    <h4 className="text-lg text-primary mb-2">
-                      {exp.company}
+                    <h4 className="text-lg mb-2">
+                      <span style={{ background: "linear-gradient(to right, rgb(96 165 250), rgb(192 132 252))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{exp.company}</span>
                     </h4>
 
                     {/* Duration */}
