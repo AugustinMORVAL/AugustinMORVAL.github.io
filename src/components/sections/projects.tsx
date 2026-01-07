@@ -53,7 +53,7 @@ export default function ProjectsSection() {
             rotateX: 0,
             y: 0,
             scale: 1,
-            duration: 1,
+            duration: 0.5,
             ease: "power3.out",
             scrollTrigger: {
               trigger: project,
@@ -112,7 +112,7 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">

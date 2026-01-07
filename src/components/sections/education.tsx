@@ -24,7 +24,7 @@ export default function EducationSection() {
             y: 0,
             rotateX: 0,
             scale: 1,
-            duration: 0.9,
+            duration: 0.4,
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
@@ -47,7 +47,7 @@ export default function EducationSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">

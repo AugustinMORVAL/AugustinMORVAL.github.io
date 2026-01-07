@@ -23,7 +23,7 @@ export default function ExperienceSection() {
           },
           {
             scaleY: 1,
-            duration: 1.5,
+            duration: 0.8,
             ease: "power2.inOut",
             scrollTrigger: {
               trigger: timelineRef.current,
@@ -51,7 +51,7 @@ export default function ExperienceSection() {
             {
               scale: 1,
               opacity: 1,
-              duration: 0.5,
+              duration: 0.3,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: item,
@@ -72,7 +72,7 @@ export default function ExperienceSection() {
             {
               opacity: 1,
               y: 0,
-              duration: 0.8,
+              duration: 0.4,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: item,
@@ -96,7 +96,7 @@ export default function ExperienceSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
