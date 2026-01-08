@@ -138,9 +138,9 @@ export default function HeroSection() {
               </BoxReveal>
             </motion.a>
 
-            {/* Second Row: Hire Me + Social Buttons */}
+            {/* Second Row: Contact Me + Social Buttons */}
             <div className="flex gap-3 w-full">
-              {/* Hire Me Button */}
+              {/* Get in touch Button */}
               <motion.a
                 href="#contact"
                 className="flex-1"
@@ -155,7 +155,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="w-full text-foreground border-border hover:bg-accent"
                 >
-                  Hire Me
+                  Get In Touch
                 </Button>
               </motion.a>
 
