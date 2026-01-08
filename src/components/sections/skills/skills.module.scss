@@ -1,0 +1,44 @@
+.tabTrigger {
+  &.active {
+    color: var(--color-text-white);
+  }
+}
+
+.tag {
+  background-color: var(--tag-color);
+  opacity: 0.8;
+}
+
+.levelText {
+  &.beginner {
+    color: var(--color-level-beginner);
+  }
+  
+  &.intermediate {
+    color: var(--color-level-intermediate);
+  }
+  
+  &.advanced {
+    color: var(--color-level-advanced);
+  }
+}
+
+.levelIndicator {
+  &.active {
+    &.beginner {
+      background-color: var(--color-level-beginner);
+    }
+    
+    &.intermediate {
+      background-color: var(--color-level-intermediate);
+    }
+    
+    &.advanced {
+      background-color: var(--color-level-advanced);
+    }
+  }
+  
+  &.inactive {
+    background-color: var(--color-level-inactive);
+  }
+}

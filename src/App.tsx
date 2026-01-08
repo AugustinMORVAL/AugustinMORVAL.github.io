@@ -33,7 +33,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
         <TooltipProvider delayDuration={200}>
         <div className="relative min-h-screen overflow-hidden">
-          <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800" />
+          <div className="fixed inset-0 bg-gradient-to-br from-[hsl(var(--bg-gradient-from))] via-[hsl(var(--bg-gradient-via))] to-[hsl(var(--bg-gradient-to))]" />
 
           {/* Header */}
           <Header />

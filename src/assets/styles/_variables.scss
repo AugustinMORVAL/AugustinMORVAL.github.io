@@ -1,5 +1,32 @@
+:root {
+    --category-languages: hsl(38, 92%, 50%);
+    --category-data: hsl(160, 84%, 39%);
+    --category-databases: hsl(350, 89%, 60%);
+    --category-ml: hsl(258, 90%, 66%);
+    --category-genai: hsl(292, 95%, 68%);
+    --category-app-dev: hsl(217, 91%, 60%);
+    --category-mlops: hsl(239, 84%, 67%);
+    
+    --level-beginner: hsl(217, 91%, 60%);
+    --level-intermediate: hsl(48, 96%, 53%);
+    --level-advanced: hsl(142, 76%, 36%);
+    
+    --color-tag-text: hsl(215, 20%, 65%);
+    --color-text-white: hsl(0, 0%, 100%);
+    --color-level-beginner: hsl(217, 91%, 60%);
+    --color-level-intermediate: hsl(48, 96%, 53%);
+    --color-level-advanced: hsl(142, 76%, 36%);
+    --color-level-inactive: hsl(215, 28%, 17%);
+}
+
+.dark {
+    --color-tag-text: hsl(215, 20%, 65%);
+    --color-text-white: hsl(0, 0%, 100%);
+    --color-level-inactive: hsl(215, 28%, 17%);
+}
+
 .text-gradient {
-    background: linear-gradient(to right, rgb(96, 165, 250), rgb(192, 132, 252));
+    background: linear-gradient(to right, hsl(var(--gradient-blue)), hsl(var(--gradient-purple)));
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }

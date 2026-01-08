@@ -23,7 +23,6 @@ export default function ExperienceSection() {
           },
           {
             scaleY: 1,
-            duration: 0.8,
             ease: "power2.inOut",
             scrollTrigger: {
               trigger: timelineRef.current,
@@ -74,6 +73,8 @@ export default function ExperienceSection() {
               y: 0,
               duration: 0.4,
               ease: "power2.out",
+              autoAlpha: 1,
+              clearProps: "transform",
               scrollTrigger: {
                 trigger: item,
                 start: "top 80%",

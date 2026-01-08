@@ -28,7 +28,7 @@ export default function HeroSection() {
         nameRef.current.innerHTML = chars
           .map((char) => {
             const charText = char === " " ? "\u00A0" : char;
-            return `<span class="inline-block" style="opacity: 1; transform: translateY(50px) rotateX(-90deg); background: linear-gradient(to right, white, rgb(226 232 240), rgb(148 163 184)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${charText}</span>`;
+            return `<span class="inline-block" style="opacity: 1; transform: translateY(50px) rotateX(-90deg); background: linear-gradient(to right, hsl(var(--hero-name-start)), hsl(var(--hero-name-mid)), hsl(var(--hero-name-end))); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${charText}</span>`;
           })
           .join("");
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6">
           {/* Greeting */}
           <BlurIn delay={0.2}>
-            <p className="text-lg md:text-xl text-slate-300 font-light">
+            <p className="text-lg md:text-xl text-muted-foreground font-light">
               Hi, I am
             </p>
           </BlurIn>
@@ -91,7 +91,7 @@ export default function HeroSection() {
             className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none"
             style={{ 
               perspective: "1000px",
-              background: "linear-gradient(to right, white, rgb(226 232 240), rgb(148 163 184))",
+              background: "linear-gradient(to right, hsl(var(--hero-name-start)), hsl(var(--hero-name-mid)), hsl(var(--hero-name-end)))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -103,14 +103,14 @@ export default function HeroSection() {
           {/* Title */}
           <p
             ref={titleRef}
-            className="text-lg md:text-2xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold"
+            className="text-lg md:text-2xl text-gradient font-semibold"
           >
             {config.title}
           </p>
 
           {/* Description */}
           <BlurIn delay={0.8}>
-            <p className="text-base text-slate-400 max-w-lg">
+            <p className="text-base text-muted-foreground max-w-lg">
               {config.description.short}
             </p>
           </BlurIn>
@@ -220,8 +220,8 @@ export default function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {!splineLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50 rounded-lg z-10">
-                <div className="animate-pulse text-slate-400">Loading 3D scene...</div>
+              <div className="absolute inset-0 flex items-center justify-center bg-background/50 rounded-lg z-10">
+                <div className="animate-pulse text-muted-foreground">Loading 3D scene...</div>
               </div>
             )}
             <div className="w-full h-full">

@@ -1,14 +1,27 @@
 import type { Skill, ActiveSkill } from "@/interfaces/skills";
 import { SKILLS } from "@/data/skills-data";
 
+const getCategoryColorVar = (category: string): string => {
+  const colorMap: Record<string, string> = {
+    Languages: "var(--category-languages)",
+    Data: "var(--category-data)",
+    Databases: "var(--category-databases)",
+    "Machine Learning": "var(--category-ml)",
+    GenAI: "var(--category-genai)",
+    "App Development": "var(--category-app-dev)",
+    "MLOps & Cloud": "var(--category-mlops)",
+  };
+  return colorMap[category] || "var(--primary)";
+};
+
 export const CATEGORY_COLORS: Record<string, string> = {
-  Languages: "#F59E0B",        // Amber
-  Data: "#10B981",             // Emerald
-  Databases: "#F43F5E",        // Rose
-  "Machine Learning": "#8B5CF6", // Violet
-  GenAI: "#D946EF",            // Fuchsia
-  "App Development": "#3B82F6", // Blue
-  "MLOps & Cloud": "#6366F1",  // Indigo
+  Languages: getCategoryColorVar("Languages"),
+  Data: getCategoryColorVar("Data"),
+  Databases: getCategoryColorVar("Databases"),
+  "Machine Learning": getCategoryColorVar("Machine Learning"),
+  GenAI: getCategoryColorVar("GenAI"),
+  "App Development": getCategoryColorVar("App Development"),
+  "MLOps & Cloud": getCategoryColorVar("MLOps & Cloud"),
 };
 
 export const CATEGORY_ORDER = [

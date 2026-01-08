@@ -95,7 +95,7 @@ export default function ProjectsSection() {
       gsap.to(el, {
         rotateY: x / 25,
         rotateX: -y / 25,
-        boxShadow: `${-x / 4}px ${y / 4}px 25px rgba(0,0,0,.25)`,
+        boxShadow: `${-x / 4}px ${y / 4}px 25px hsl(var(--shadow-color) / var(--shadow-opacity-hover))`,
         duration: 0.4,
         ease: "power2.out",
         transformPerspective: 1000,
@@ -107,7 +107,7 @@ export default function ProjectsSection() {
     gsap.to(e.currentTarget, {
       rotateX: 0,
       rotateY: 0,
-      boxShadow: "0px 10px 25px rgba(0,0,0,.15)",
+      boxShadow: `0px 10px 25px hsl(var(--shadow-color) / var(--shadow-opacity))`,
       duration: 0.6,
       ease: "power3.out",
     });

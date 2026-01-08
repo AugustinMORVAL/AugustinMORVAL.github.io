@@ -45,6 +45,25 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "gradient-blue": {
+          DEFAULT: "hsl(var(--gradient-blue))",
+        },
+        "gradient-purple": {
+          DEFAULT: "hsl(var(--gradient-purple))",
+        },
+        "gradient-pink": {
+          DEFAULT: "hsl(var(--gradient-pink))",
+        },
+        "gradient-blue-light": {
+          DEFAULT: "hsl(var(--gradient-blue-light))",
+        },
+        "gradient-purple-light": {
+          DEFAULT: "hsl(var(--gradient-purple-light))",
+        },
+      },
+      boxShadow: {
+        DEFAULT: "hsl(var(--shadow-color) / var(--shadow-opacity))",
+        hover: "hsl(var(--shadow-color) / var(--shadow-opacity-hover))",
       },
       borderRadius: {
         lg: "var(--radius)",

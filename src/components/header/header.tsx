@@ -64,7 +64,7 @@ export default function Header() {
             e.preventDefault();
             scrollToSection("#hero");
           }}
-          className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+          className="text-xl md:text-2xl font-bold text-gradient"
         >
           Portfolio
         </a>
@@ -80,10 +80,10 @@ export default function Header() {
                 scrollToSection(link.href);
               }}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-blue-400",
+                "text-sm font-medium transition-colors hover:text-gradient-blue",
                 activeSection === link.href.substring(1)
-                  ? "text-blue-400"
-                  : "text-slate-400"
+                  ? "text-gradient-blue"
+                  : "text-muted-foreground"
               )}
             >
               {link.name}
@@ -122,10 +122,10 @@ export default function Header() {
                   scrollToSection(link.href);
                 }}
                 className={cn(
-                  "text-lg font-medium transition-colors hover:text-blue-400 py-2",
+                  "text-lg font-medium transition-colors hover:text-gradient-blue py-2",
                   activeSection === link.href.substring(1)
-                    ? "text-blue-400"
-                    : "text-slate-400"
+                    ? "text-gradient-blue"
+                    : "text-muted-foreground"
                 )}
               >
                 {link.name}

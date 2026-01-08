@@ -12,6 +12,7 @@ import {
 } from "@/lib/skills";
 import { SkillIcon } from "@/components/sections/skills/components/skill-icon";
 import { config } from "@/config/config";
+import styles from "./skills.module.scss";
 
 export default function SkillsSection() {
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -63,10 +64,10 @@ export default function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Tech Stack
           </h2>
-          <p className="text-slate-400 text-lg">
+          <p className="text-muted-foreground text-lg">
             Technologies I work with
           </p>
         </motion.div>
@@ -80,10 +81,9 @@ export default function SkillsSection() {
                 <Tabs.Trigger
                   key={category}
                   value={category}
-                  className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 border border-slate-700/50"
+                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 border border-border ${styles.tabTrigger}${activeTab === category ? " " + styles.active : ""}`}
                   style={{
                     backgroundColor: activeTab === category ? categoryColor : undefined,
-                    color: activeTab === category ? "#fff" : undefined,
                     borderColor: activeTab === category ? categoryColor : undefined,
                   }}
                   data-state={activeTab === category ? "active" : "inactive"}
@@ -91,7 +91,7 @@ export default function SkillsSection() {
                   <span
                     className={
                       activeTab !== category
-                        ? "text-slate-400 hover:text-white transition-colors"
+                        ? "text-muted-foreground hover:text-foreground transition-colors"
                         : ""
                     }
                   >
@@ -132,17 +132,15 @@ export default function SkillsSection() {
                           
                           {/* Main keycap */}
                           <div 
-                            className="relative bg-gradient-to-br from-slate-800 to-slate-900 
+                            className="relative bg-gradient-to-br from-card to-muted 
                               border rounded-xl p-6 transform transition-all duration-300 translate-y-1
                               h-[280px] flex flex-col"
-                            style={{
-                              borderColor: "rgba(71, 85, 105, 0.5)",
-                            }}
                           >
                             <div 
-                              className="absolute top-0 left-0 right-0 h-1 rounded-t-xl opacity-30"
+                              className="absolute top-0 left-0 right-0 h-1 rounded-t-xl"
                               style={{ 
-                                background: `linear-gradient(to right, transparent, ${categoryColor}60, transparent)`,
+                                background: `linear-gradient(to right, transparent, ${categoryColor}, transparent)`,
+                                opacity: 0.3,
                               }}
                             />
                             
@@ -157,12 +155,12 @@ export default function SkillsSection() {
                             </div>
 
                             {/* Skill Name */}
-                            <h3 className="text-lg font-semibold text-white mb-2 flex-shrink-0">
+                            <h3 className="text-lg font-semibold text-foreground mb-2 flex-shrink-0">
                               {skill.label}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-sm text-slate-400 mb-3 flex-grow line-clamp-3">
+                            <p className="text-sm text-muted-foreground mb-3 flex-grow line-clamp-3">
                               {skill.shortDescription}
                             </p>
 
@@ -172,11 +170,8 @@ export default function SkillsSection() {
                                 skill.tags.map((tag, index) => (
                                   <span
                                     key={index}
-                                    className="text-xs px-3 py-1 rounded-full inline-block"
-                                    style={{
-                                      backgroundColor: `${categoryColor}30`,
-                                      color: "#cbd5e1",
-                                    }}
+                                    className={`text-xs px-3 py-1 rounded-full inline-block ${styles.tag}`}
+                                    style={{ backgroundColor: categoryColor }}
                                   >
                                     {tag}
                                   </span>
@@ -188,14 +183,13 @@ export default function SkillsSection() {
                             <div className="mt-auto flex-shrink-0">
                               <div className="flex items-center justify-between mb-2">
                                 <span 
-                                  className="text-xs font-medium"
-                                  style={{
-                                    color: skill.level === 3
-                                      ? "#22c55e"
+                                  className={`text-xs font-medium ${styles.levelText} ${
+                                    skill.level === 3
+                                      ? styles.advanced
                                       : skill.level === 2
-                                      ? "#eab308"
-                                      : "#3b82f6"
-                                  }}
+                                      ? styles.intermediate
+                                      : styles.beginner
+                                  }`}
                                 >
                                   {SKILL_LEVEL_MAP[skill.level]}
                                 </span>
@@ -204,17 +198,17 @@ export default function SkillsSection() {
                                 {[...Array(3)].map((_, i) => (
                                   <div
                                     key={i}
-                                    className="h-1 flex-1 rounded-full"
-                                    style={{
-                                      backgroundColor: 
-                                        i < skill.level
-                                          ? skill.level === 3
-                                            ? "#22c55e"
-                                            : skill.level === 2
-                                            ? "#eab308"
-                                            : "#3b82f6"
-                                          : "#334155"
-                                    }}
+                                    className={`h-1 flex-1 rounded-full ${styles.levelIndicator} ${
+                                      i < skill.level
+                                        ? `${styles.active} ${
+                                            skill.level === 3
+                                              ? styles.advanced
+                                              : skill.level === 2
+                                              ? styles.intermediate
+                                              : styles.beginner
+                                          }`
+                                        : styles.inactive
+                                    }`}
                                   />
                                 ))}
                               </div>
