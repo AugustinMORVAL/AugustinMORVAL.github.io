@@ -138,19 +138,22 @@ export default function ProjectsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, i) => (
             <Dialog key={project.id}>
-              <div className="relative">
+              <div className="relative h-full">
                 <div
                   ref={el => setCardRef(el, i)}
                   onMouseMove={handleMove}
                   onMouseLeave={resetTilt}
-                  className="bg-card rounded-xl overflow-hidden cursor-pointer transition hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary transform-style-3d"
+                  className="bg-card rounded-xl overflow-hidden cursor-pointer transition hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary transform-style-3d h-full flex flex-col min-h-[500px]"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                    <span className="text-4xl">📁</span>
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0">
+                    <span className="text-5xl">📁</span>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
+                  <div className="p-8 flex flex-col flex-grow">
+                    <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                    <span className="text-xs px-3 py-1 rounded-full bg-primary/20 text-primary whitespace-nowrap w-fit mb-3">
+                      {project.category}
+                    </span>
+                    <p className="text-base text-muted-foreground line-clamp-5 flex-grow">
                       {project.description}
                     </p>
                   </div>
