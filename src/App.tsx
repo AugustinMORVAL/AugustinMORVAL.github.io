@@ -3,15 +3,17 @@ import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
-import { HeroSection } from "./components/sections/hero";
-import { SkillsSection } from "./components/sections/skills";
-import EducationSection from "./components/sections/education";
-import ExperienceSection from "./components/sections/experience";
-import ProjectsSection from "./components/sections/projects";
-import ContactSection from "./components/sections/contact";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLenis } from "./hooks/useLenis";
 import { useGSAPScrollTrigger } from "./hooks/useGSAPScrollTrigger";
+import { lazy, Suspense } from "react";
+
+const HeroSection = lazy(() => import("./components/sections/hero").then(m => ({ default: m.HeroSection })));
+const SkillsSection = lazy(() => import("./components/sections/skills").then(m => ({ default: m.SkillsSection })));
+const EducationSection = lazy(() => import("./components/sections/education"));
+const ExperienceSection = lazy(() => import("./components/sections/experience"));
+const ProjectsSection = lazy(() => import("./components/sections/projects"));
+const ContactSection = lazy(() => import("./components/sections/contact"));
 
 function ErrorFallback({ error }: { error: Error }) {
   return (
@@ -40,12 +42,24 @@ function App() {
 
           {/* Main Content */}
           <main className="relative">
-            <HeroSection />
-            <SkillsSection />
-            <ExperienceSection />
-            <ProjectsSection />
-            <EducationSection />
-            <ContactSection />
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <HeroSection />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <SkillsSection />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <ExperienceSection />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <ProjectsSection />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <EducationSection />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <ContactSection />
+            </Suspense>
           </main>
 
           {/* Footer */}
