@@ -1,4 +1,4 @@
-import { config } from "@/data/config";
+import { config } from "@/config/config";
 import SectionWrapper from "../ui/section-wrapper";
 import { BlurIn, BoxReveal } from "../animations/reveal-animations";
 import { Button } from "../ui/button";

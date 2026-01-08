@@ -1,5 +1,7 @@
 import SectionWrapper from "../ui/section-wrapper";
-import projects, { type Project, type Skill } from "@/data/projects";
+import { config } from "@/config/config";
+import { SKILLS } from "@/data/skills-data";
+import { SkillIcon } from "@/components/skill-icon";
 import { motion } from "framer-motion";
 import {
   Dialog,
@@ -15,6 +17,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const projects = config.projects;
 
 export default function ProjectsSection() {
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -125,7 +129,7 @@ export default function ProjectsSection() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project: Project, index: number) => (
+          {projects.map((project, index: number) => (
             <Dialog key={project.id}>
               <DialogTrigger asChild>
                 <div
@@ -197,18 +201,23 @@ export default function ProjectsSection() {
                             Frontend
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {project.skills.frontend.map((skill: Skill) => (
-                              <motion.div
-                                key={skill.title}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
-                              >
-                                <span className="text-lg">{skill.icon}</span>
-                                <span>{skill.title}</span>
-                              </motion.div>
-                            ))}
+                            {project.skills.frontend.map((skill) => {
+                              const skillData = SKILLS[skill.name];
+                              return (
+                                <motion.div
+                                  key={skill.name}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
+                                >
+                                  <span className="text-lg w-5 h-5 flex items-center justify-center">
+                                    <SkillIcon skillName={skill.name} />
+                                  </span>
+                                  <span>{skillData.label}</span>
+                                </motion.div>
+                              );
+                            })}
                           </div>
                         </div>
                       )}
@@ -218,18 +227,49 @@ export default function ProjectsSection() {
                             Backend
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {project.skills.backend.map((skill: Skill) => (
-                              <motion.div
-                                key={skill.title}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
-                              >
-                                <span className="text-lg">{skill.icon}</span>
-                                <span>{skill.title}</span>
-                              </motion.div>
-                            ))}
+                            {project.skills.backend.map((skill) => {
+                              const skillData = SKILLS[skill.name];
+                              return (
+                                <motion.div
+                                  key={skill.name}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
+                                >
+                                  <span className="text-lg w-5 h-5 flex items-center justify-center">
+                                    <SkillIcon skillName={skill.name} />
+                                  </span>
+                                  <span>{skillData.label}</span>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                      {project.skills.database.length > 0 && (
+                        <div className="flex-1">
+                          <p className="text-sm text-muted-foreground mb-2">
+                            Database
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.skills.database.map((skill) => {
+                              const skillData = SKILLS[skill.name];
+                              return (
+                                <motion.div
+                                  key={skill.name}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-sm hover:bg-primary/20 transition-colors"
+                                >
+                                  <span className="text-lg w-5 h-5 flex items-center justify-center">
+                                    <SkillIcon skillName={skill.name} />
+                                  </span>
+                                  <span>{skillData.label}</span>
+                                </motion.div>
+                              );
+                            })}
                           </div>
                         </div>
                       )}

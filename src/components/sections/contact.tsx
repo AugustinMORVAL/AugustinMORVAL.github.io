@@ -1,5 +1,5 @@
 import SectionWrapper from "../ui/section-wrapper";
-import { config } from "@/data/config";
+import { config } from "@/config/config";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +18,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Form validation schema
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email"),
@@ -43,7 +42,6 @@ export default function ContactSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate contact info section
       if (contactInfoRef.current) {
         gsap.fromTo(
           contactInfoRef.current,

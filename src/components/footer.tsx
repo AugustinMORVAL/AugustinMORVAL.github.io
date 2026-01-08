@@ -1,4 +1,4 @@
-import { config } from "@/data/config";
+import { config } from "@/config/config";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 
 export default function Footer() {

@@ -1,5 +1,5 @@
 import SectionWrapper from "../ui/section-wrapper";
-import { config } from "@/data/config";
+import { config } from "@/config/config";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";

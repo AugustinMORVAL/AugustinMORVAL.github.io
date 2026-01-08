@@ -3,13 +3,15 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef, useMemo } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { gsap } from "gsap";
+import { SKILLS } from "@/data/skills-data";
 import { 
-  CATEGORY_COLORS, 
+  CATEGORY_COLORS,
   getActiveCategories, 
   getActiveSkillsByCategory,
-  getSkillIcon,
-} from "@/data/skills-data";
-import { config } from "@/data/config";
+  SKILL_LEVEL_MAP,
+} from "@/lib/skills";
+import { SkillIcon } from "@/components/skill-icon";
+import { config } from "@/config/config";
 
 export default function SkillsSection() {
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -109,7 +111,6 @@ export default function SkillsSection() {
                   className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transform-style-3d"
                 >
                   {groupedSkills[category]?.map((skill) => {
-                    const icon = getSkillIcon(skill.name);
                     const categoryColor = CATEGORY_COLORS[skill.category];
 
                     return (
@@ -152,7 +153,7 @@ export default function SkillsSection() {
                                 filter: "grayscale(30%) opacity(0.85)",
                               }}
                             >
-                              {icon}
+                              <SkillIcon skillName={skill.name as keyof typeof SKILLS} />
                             </div>
 
                             {/* Skill Name */}
@@ -189,14 +190,14 @@ export default function SkillsSection() {
                                 <span 
                                   className="text-xs font-medium"
                                   style={{
-                                    color: skill.level === "Advanced"
+                                    color: skill.level === 3
                                       ? "#22c55e"
-                                      : skill.level === "Intermediate"
+                                      : skill.level === 2
                                       ? "#eab308"
                                       : "#3b82f6"
                                   }}
                                 >
-                                  {skill.level}
+                                  {SKILL_LEVEL_MAP[skill.level]}
                                 </span>
                               </div>
                               <div className="flex gap-1">
@@ -206,10 +207,10 @@ export default function SkillsSection() {
                                     className="h-1 flex-1 rounded-full"
                                     style={{
                                       backgroundColor: 
-                                        i < (skill.level === "Advanced" ? 3 : skill.level === "Intermediate" ? 2 : 1)
-                                          ? skill.level === "Advanced"
+                                        i < skill.level
+                                          ? skill.level === 3
                                             ? "#22c55e"
-                                            : skill.level === "Intermediate"
+                                            : skill.level === 2
                                             ? "#eab308"
                                             : "#3b82f6"
                                           : "#334155"
