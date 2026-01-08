@@ -25,10 +25,7 @@ function ErrorFallback({ error }: { error: Error }) {
 }
 
 function App() {
-  // Initialize smooth scrolling with Lenis
   useLenis();
-  
-  // Initialize GSAP ScrollTrigger
   useGSAPScrollTrigger();
 
   return (
