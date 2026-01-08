@@ -1,0 +1,31 @@
+@use "@/assets/styles/_mixins.scss" as *;
+
+.splineContainer {
+  @include spline-responsive;
+  
+  @include hide-below(md);
+  
+  @include respond-to(md) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.splineWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  
+  @include respond-to(md) {
+    min-height: 400px;
+  }
+  
+  @include respond-to(lg) {
+    min-height: 500px;
+  }
+  
+  @include respond-to(xl) {
+    min-height: 600px;
+  }
+}

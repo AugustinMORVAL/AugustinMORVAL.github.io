@@ -6,14 +6,16 @@ import { FileText } from "lucide-react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import ScrollDownIcon from "./components/scroll-down-icon";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../ui/tooltip";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
+import Home from "./components/home";
 
 export default function HeroSection() {
   const nameRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const buttonRefs = useRef<(HTMLAnchorElement | HTMLDivElement | null)[]>([]);
+  const [splineLoaded, setSplineLoaded] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -209,8 +211,27 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column - Could add 3D elements or graphics here */}
-        <div className="hidden md:block"></div>
+        {/* Right Column - Spline 3D Scene */}
+        <div className="hidden md:flex items-center justify-center h-full w-full relative">
+          <motion.div
+            className="w-full h-full max-h-[600px] lg:max-h-[700px] relative rounded-lg overflow-hidden"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: splineLoaded ? 1 : 0, scale: splineLoaded ? 1 : 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {!splineLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50 rounded-lg z-10">
+                <div className="animate-pulse text-slate-400">Loading 3D scene...</div>
+              </div>
+            )}
+            <div className="w-full h-full">
+              <Home 
+                onLoad={() => setSplineLoaded(true)} 
+                onError={() => setSplineLoaded(true)}
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll Down Indicator */}

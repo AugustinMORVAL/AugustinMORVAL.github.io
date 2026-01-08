@@ -1,0 +1,66 @@
+@use "sass:map";
+
+// Responsive breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  '2xl': 1536px,
+);
+
+// Mixin for responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+    @if $value == 0 {
+      @content;
+    } @else {
+      @media (min-width: $value) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Unknown breakpoint: #{$breakpoint}";
+  }
+}
+
+// Mixin to hide element below a breakpoint
+@mixin hide-below($breakpoint) {
+  display: none;
+  @include respond-to($breakpoint) {
+    display: block;
+  }
+}
+
+// Mixin to show element only above a breakpoint
+@mixin show-above($breakpoint) {
+  display: none;
+  @include respond-to($breakpoint) {
+    display: block;
+  }
+}
+
+// Mixin for responsive Spline container
+@mixin spline-responsive {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  max-height: 600px;
+  
+  @include respond-to(md) {
+    min-height: 400px;
+    max-height: 600px;
+  }
+  
+  @include respond-to(lg) {
+    min-height: 500px;
+    max-height: 700px;
+  }
+  
+  @include respond-to(xl) {
+    min-height: 600px;
+    max-height: 800px;
+  }
+}

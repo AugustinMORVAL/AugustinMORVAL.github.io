@@ -2,6 +2,7 @@
 @use "./_base.scss" as *;
 @use "./_utils.scss" as *;
 @use "./_variables.scss" as *;
+@use "./_mixins.scss" as *;
 
 @tailwind base;
 @tailwind components;
