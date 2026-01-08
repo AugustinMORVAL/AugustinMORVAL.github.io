@@ -1,10 +1,10 @@
 import { ThemeProvider } from "./context/theme-provider";
 import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import HeroSection from "./components/sections/hero";
-import SkillsSection from "./components/sections/skills";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import { HeroSection } from "./components/sections/hero";
+import { SkillsSection } from "./components/sections/skills";
 import EducationSection from "./components/sections/education";
 import ExperienceSection from "./components/sections/experience";
 import ProjectsSection from "./components/sections/projects";

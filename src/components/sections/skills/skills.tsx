@@ -1,4 +1,4 @@
-import SectionWrapper from "../ui/section-wrapper";
+import SectionWrapper from "../../ui/section-wrapper";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef, useMemo } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
@@ -10,7 +10,7 @@ import {
   getActiveSkillsByCategory,
   SKILL_LEVEL_MAP,
 } from "@/lib/skills";
-import { SkillIcon } from "@/components/skill-icon";
+import { SkillIcon } from "@/components/sections/skills/components/skill-icon";
 import { config } from "@/config/config";
 
 export default function SkillsSection() {

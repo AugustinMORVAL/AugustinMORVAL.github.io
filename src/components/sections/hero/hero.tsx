@@ -1,11 +1,11 @@
 import { config } from "@/config/config";
-import SectionWrapper from "../ui/section-wrapper";
-import { BlurIn, BoxReveal } from "../animations/reveal-animations";
-import { Button } from "../ui/button";
+import SectionWrapper from "../../ui/section-wrapper";
+import { BlurIn, BoxReveal } from "../../animations/reveal-animations";
+import { Button } from "../../ui/button";
 import { FileText } from "lucide-react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
-import ScrollDownIcon from "../scroll-down-icon";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
+import ScrollDownIcon from "./components/scroll-down-icon";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../../ui/tooltip";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
