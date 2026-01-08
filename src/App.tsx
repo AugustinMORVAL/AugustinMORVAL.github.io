@@ -1,4 +1,4 @@
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from "./context/theme-provider";
 import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import Header from "./components/header";
@@ -33,7 +33,6 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
         <TooltipProvider delayDuration={200}>
         <div className="relative min-h-screen overflow-hidden">
-          {/* Animated gradient background */}
           <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800" />
 
           {/* Header */}
