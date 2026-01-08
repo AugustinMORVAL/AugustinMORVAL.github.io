@@ -21,7 +21,6 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Determine active section
       const sections = navLinks.map((link) => link.href.substring(1));
       for (const section of sections) {
         const element = document.getElementById(section);

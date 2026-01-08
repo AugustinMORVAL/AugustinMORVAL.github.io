@@ -5,11 +5,11 @@ import { projects } from "./sections/projects";
 
 export const config = {
   name: "Augustin MORVAL",
-  title: "AI/Data Developer",
+  title: "Data & AI Engineer",
   description: {
-    long: "AI Developer focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
+    long: "Data & AI Engineer focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
     short:
-      "AI Developer bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
+      "Data & AI Engineer bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
   },
   email: "augustin.morval.pro@gmail.com",
   resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",
