@@ -66,7 +66,7 @@ export default function Header() {
           }}
           className="text-xl md:text-2xl font-bold text-gradient"
         >
-          Portfolio
+          My Portfolio
         </a>
 
         {/* Desktop Navigation */}
