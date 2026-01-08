@@ -49,21 +49,24 @@ export default function ProjectsSection() {
     if (reducedMotion) return;
 
     const ctx = gsap.context(() => {
+      gsap.set(cards.current, {
+        opacity: 0,
+        y: 80,
+        rotateX: 20,
+        scale: 0.9,
+      });
+
       ScrollTrigger.batch(cards.current, {
         start: "top 85%",
         onEnter: batch =>
-          gsap.fromTo(
-            batch,
-            { opacity: 0, y: 80, rotateX: 20, scale: 0.9 },
-            {
-              opacity: 1,
-              y: 0,
-              rotateX: 0,
-              scale: 1,
-              stagger: 0.12,
-              ease: "power3.out",
-            }
-          ),
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            scale: 1,
+            stagger: 0.12,
+            ease: "power3.out",
+          }),
       });
 
       cards.current.forEach((card, i) => {
