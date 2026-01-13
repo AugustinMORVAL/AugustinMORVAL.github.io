@@ -2,60 +2,53 @@ import type { Experience } from "@/interfaces/experience";
 
 export const experience: Experience[] = [
   {
+    company: "Freelance",
+    role: "Data Scientist / AI Engineer",
+    duration: "November 2025 – Present",
+    description:
+      "Developing and deploying advanced AI solutions for clients, focusing on production-ready pipelines and real-world applications.",
+    achievements: [
+      "Developed a medical OCR pipeline to extract information from prescriptions, identify consultation types, and recommend an appropriate time slot (98.6% accuracy, ~3 sec/document on CPU, validated on 500 prescriptions).",
+    ],
+    skills: [
+      "OCR",
+      "Computer Vision",
+    ],
+  },
+  {
     company: "Artefact",
     role: "Data Consultant",
-    duration: "Apr 2025 - Present",
-    description: "Details coming soon.",
-    achievements: [],
-    skills: [],
+    duration: "January 2025 – November 2025",
+    description:
+      "Set up Data & AI governance and acted as AI Product Owner on multiple projects, delivering production-ready AI solutions for enterprise clients.",
+    achievements: [
+      "Set up Data & AI governance to support the industrialization of AI & GenAI products for a large enterprise client.",
+      "Acted as AI Product Owner on 2 projects: business scoping, use-case prioritization, facilitation of business & IT workshops, roadmap definition, delivery coordination and tracking.",
+      "Prototyped a POC deployed on GCP: a Gemini-powered project management application (analysis, business requirements qualification support, project tracking) — approved by the Executive Committee.",
+    ],
+    skills: [
+      "AI Governance",
+      "Product Ownership",
+      "GenAI",
+      "GCP",
+      "Project Management",
+    ],
   },
   {
     company: "Wavestone",
-    role: "Junior Consultant",
-    duration: "Jun 2024 - Sep 2024",
+    role: "Financial Services Consultant",
+    duration: "June 2024 – September 2024",
     description:
-      "Worked on operational procedures/control systems analysis and explored LLM benchmarking for agentic workflows in a banking context.",
+      "Conducted technical benchmarking of LLMs and analyzed internal processes and control frameworks in a banking context.",
     achievements: [
-      "Benchmarked open-source LLMs and compared capabilities for integration into a network of autonomous agents.",
-      "Analyzed operational procedures and control systems; identified gaps and documented discrepancies.",
+      "Conducted a technical benchmark of open-source LLMs for integration into an autonomous multi-agent network in a banking context.",
+      "Analyzed internal processes and control frameworks at a major bank; identified gaps and delivered operational recommendations.",
     ],
     skills: [
       "LLM Benchmarking",
       "Agentic Workflows",
       "Process Analysis",
-    ],
-  },
-  {
-    company: "Abbott",
-    role: "Junior Consultant",
-    duration: "Oct 2022 - Apr 2023",
-    description:
-      "Go-to-market strategy and analytics work for a digital healthcare solution across APAC.",
-    achievements: [
-      "Conducted market research across 8 APAC countries to refine go-to-market strategy.",
-      "Performed quantitative/qualitative analysis and validated insights with 26 expert interviews.",
-      "Delivered 7 strategic recommendations across strategy, structure and value proposition.",
-    ],
-    skills: [
-      "Market Research",
-      "Quantitative/Qualitative Analysis",
-    ],
-  },
-  {
-    company: "Groupe CréO",
-    role: "M&A Analyst",
-    duration: "Jan 2022 - Jun 2022",
-    description:
-      "Financial modeling, scenario analysis and operational restructuring in a transaction context.",
-    achievements: [
-      "Built predictive financial scenarios and cost analyses to support strategic decision-making.",
-      "Led supply-chain restructuring across overseas territories, reducing logistics costs by 15%.",
-      "Supported buy-side valuations and sell-side diligence for a €15M divestiture.",
-    ],
-    skills: [
-      "Financial Modeling",
-      "Business Valuation",
-      "Due Diligence",
+      "Banking",
     ],
   },
 ];

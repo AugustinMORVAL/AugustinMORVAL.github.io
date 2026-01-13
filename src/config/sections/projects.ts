@@ -3,7 +3,7 @@ import type { Project } from "@/interfaces/projects";
 export const projects: Project[] = [
   {
     id: "pictomusic",
-    title: "Picture to Music Generator",
+    title: "Picture to Music — Computer Vision & Music Generation",
     category: "Computer Vision",
     description:
       "An innovative AI project that generates audio played music from music score sheets. Using computer vision and music generation models, this tool analyzes visual elements like notes, dynamics and tempo to recreate an audio piece of a given score.",
@@ -22,8 +22,10 @@ export const projects: Project[] = [
     live: "https://sonatabene.streamlit.app/End2End_Pipeline",
     github: "https://github.com/AugustinMORVAL/PicToMusic",
     features: [
-      "Computer vision pipeline for music score analysis",
-      "YOLOv11 for object detection and classification",
+      "End-to-end Computer Vision pipeline for sheet music conversion",
+      "Trained 3 CNN models for detection and classification",
+      "Dataset of 50k+ annotated images",
+      "YOLO for object detection and classification",
       "OpenCV for image processing",
       "Music generation from analyzed scores",
       "End-to-end Streamlit demo application",
@@ -31,10 +33,10 @@ export const projects: Project[] = [
   },
   {
     id: "audio-transcriptor",
-    title: "Diarized Audio Transcription",
+    title: "Diarized Audio Transcription — Whisper & PyAnnote",
     category: "Audio ML",
     description:
-      "Developed an advanced audio transcription system leveraging OpenAI's Whisper model and speaker diarization techniques to provide comprehensive, speaker-attributed transcripts from multi-speaker audio sources.",
+      "Built a high-accuracy multi-speaker transcription system deployed via Gradio and Hugging Face Spaces. Integrated Whisper and PyAnnote into an audio processing pipeline: noise reduction, segmentation, diarization, post-processing.",
     src: "/vite.svg",
     screenshots: [],
     skills: {
@@ -50,19 +52,19 @@ export const projects: Project[] = [
     live: "https://huggingface.co/spaces/Tingusto/audio-transcriptor",
     github: "https://github.com/AugustinMORVAL/Audio-Transcriptor",
     features: [
-      "Automatic speech-to-text with OpenAI Whisper",
-      "Speaker diarization using PyAnnote for multi-speaker attribution",
-      "Comprehensive speaker-attributed transcripts",
-      "Deployed on Hugging Face Spaces",
-      "Audio processing and NLP capabilities",
+      "High-accuracy multi-speaker transcription system",
+      "Whisper integration for speech-to-text",
+      "PyAnnote for speaker diarization",
+      "Audio processing pipeline: noise reduction, segmentation, diarization, post-processing",
+      "Deployed on Hugging Face Spaces via Gradio",
     ],
   },
   {
     id: "multitask-chatbot",
-    title: "Multitask Chatbot",
+    title: "Multimodal Chatbot — RAG & Agentic Workflows",
     category: "LLM Apps",
     description:
-      "Developed a versatile chatbot leveraging the Groq API, capable of handling diverse tasks including file processing, Retrieval-Augmented Generation (RAG), audio processing, and multilingual communication. This AI-powered assistant seamlessly integrates various problem-solving capabilities to provide comprehensive support across multiple domains.",
+      "Built a multitask AI assistant capable of handling multi-format documents (PDF, PPT, Excel, audio). Implemented RAG with a vector database, dynamic model selection, and persistent conversational memory in MongoDB.",
     src: "/vite.svg",
     screenshots: [],
     skills: {
@@ -71,18 +73,20 @@ export const projects: Project[] = [
         { name: "python" },
         { name: "langchain" },
         { name: "groq" },
+        { name: "chromadb" },
       ],
       database: [{ name: "mongodb" }],
     },
     live: "https://multitask-chatbot-chatbot.streamlit.app/",
     github: "https://github.com/AugustinMORVAL/Multitask_Chatbot",
     features: [
-      "Multi-format file processing (PDF, PPT, Excel, audio)",
-      "Retrieval-Augmented Generation (RAG) with vector databases",
+      "Multitask AI assistant handling multi-format documents (PDF, PPT, Excel, audio)",
+      "RAG implementation with vector database (ChromaDB)",
+      "Dynamic model selection",
+      "Persistent conversational memory in MongoDB",
       "Groq API integration for high-performance LLM inference",
-      "Multilingual communication support",
+      "Agentic workflows with LangChain",
       "Interactive Streamlit interface",
-      "Comprehensive problem-solving across multiple domains",
     ],
   },
 ];

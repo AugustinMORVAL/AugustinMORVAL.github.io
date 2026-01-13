@@ -5,15 +5,15 @@ import { projects } from "./sections/projects";
 
 export const config = {
   name: "Augustin MORVAL",
-  title: "Data & AI Engineer",
+  title: "Data Scientist & AI Engineer",
   description: {
-    long: "Data & AI Engineer focused on end-to-end ML: NLP/LLMs, Computer Vision (OMR) and Audio ML. I build practical prototypes and deployment-ready pipelines, with a strong consulting + finance background and a focus on measurable impact.",
+    long: "Data Scientist & AI Engineer specialized in designing and deploying advanced AI solutions (agentic LLM/GenAI, Computer Vision, Audio ML). I cover the full project lifecycle: business scoping, R&D, evaluation, and productionization through APIs (FastAPI/Flask) and MLOps practices (Docker, CI/CD, GCP). My dual background in consulting and AI engineering enables me to deliver robust solutions aligned with business goals.",
     short:
-      "Data & AI Engineer bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
+      "Data Scientist & AI Engineer bridging ML expertise with business acumen. Building production-ready apps and deploying scalable solutions to drive impact.",
   },
   email: "augustin.morval.pro@gmail.com",
-  resumeUrl: "https://drive.google.com/file/d/your-resume-id/view",
-  site: "https://yourusername.github.io",
+  resumeUrl: "https://drive.google.com/file/d/1SYd04rSaz-U-pEdx2EggJEy7OZlDbtEk/view?usp=sharing",
+  site: "https://augustin-morval.github.io",
   
   social: {
     github: "https://github.com/AugustinMORVAL",

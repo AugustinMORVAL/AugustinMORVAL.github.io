@@ -3,23 +3,23 @@ import type { Education } from "@/interfaces/education";
 export const education: Education[] = [
   {
     institution: "Artefact School of Data",
-    program: "Data Science",
-    duration: "Jan 2025 - Mar 2025",
+    program: "Intensive program in Data Science & Artificial Intelligence",
+    duration: "January 2025 – March 2025",
     description:
-      "12-week intensive, full-time program focused on building production-minded ML: framing problems, shipping reliable models and deploying them as usable services.",
+      "Intensive program in Data Science & Artificial Intelligence: Machine Learning & Deep Learning, Data Analysis, MLOps, Databases.",
     highlights: [
-      "Delivered end-to-end ML projects with an engineering mindset: reproducible experiments, clear evaluation and deployment-ready packaging",
-      "Built and optimized supervised/unsupervised models (feature engineering, tuning, pipelines) with measurable performance improvements",
-      "Applied deep learning (CNN/RNN/Transformers) to real CV & NLP cases, focusing on robustness and practical constraints",
-      "Production & MLOps fundamentals: Docker, MLflow, FastAPI, CI/CD and cloud deployment patterns for maintainable systems",
-      "Data foundations: SQL + Python (NumPy/Pandas) and clear storytelling via visualization (Matplotlib/Plotly)",
+      "Machine Learning & Deep Learning fundamentals and advanced techniques",
+      "Data Analysis and visualization",
+      "MLOps practices and deployment",
+      "Database management and SQL",
+      "End-to-end project delivery with production mindset",
     ],
-    skills: ["Python", "Machine Learning", "Deep Learning", "MLOps", "Databases"],
+    skills: ["Python", "Machine Learning", "Deep Learning", "MLOps", "Databases", "Data Analysis"],
   },
   {
-    institution: "ESSEC Asia-Pacific",
-    program: "Master in Strategy and Management of International Business",
-    duration: "Sep 2022 - Apr 2023",
+    institution: "ESSEC Business School",
+    program: "Master's in Strategy & Management of International Business",
+    duration: "August 2022 – April 2023",
     description:
       "Strategy and international business program focused on turning ambiguity into decisions: market analysis, stakeholder alignment and execution in an APAC context.",
     highlights: [
@@ -34,9 +34,9 @@ export const education: Education[] = [
     ],
   },
   {
-    institution: "ESSCA",
-    program: "Master in Corporate Finance",
-    duration: "Sep 2017 - Jun 2022",
+    institution: "ESSCA School of Management",
+    program: "Master's in Corporate Finance (Grande École Program)",
+    duration: "September 2020 – June 2022",
     description:
       "Corporate finance program focused on rigorous analysis and decision support: valuation, financial modeling and M&A fundamentals.",
     highlights: [
